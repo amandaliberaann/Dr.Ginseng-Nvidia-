@@ -30,7 +30,8 @@ const Page = async () => {
     <>
       <StructuredData ld={ld} />
       <Flexbox gap={mobile ? 16 : 24}>
-        <AgentList mobile={mobile} />
+        {/* <AgentList mobile={mobile} /> */}
+        <AgentList />
       </Flexbox>
     </>
   );
