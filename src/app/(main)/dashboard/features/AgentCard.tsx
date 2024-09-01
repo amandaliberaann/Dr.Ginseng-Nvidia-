@@ -29,8 +29,8 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
     }
   `,
   inner: css`
-    padding: 16px;
-    margin-bottom: 16px;
+    padding: 0px;
+    margin-bottom: 0px;
   `,
 }));
 

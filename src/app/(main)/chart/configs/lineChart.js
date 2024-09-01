@@ -1,79 +1,22 @@
 const lineChart = {
-  series: [
-    {
-      name: "Mobile apps",
-      data: [350, 40, 300, 220, 500, 250, 400, 230, 500],
-      offsetY: 0,
-    },
-    {
-      name: "Websites",
-      data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
-      offsetY: 0,
-    },
-  ],
-
   options: {
     chart: {
-      width: "100%",
       height: 350,
-      type: "area",
       toolbar: {
         show: false,
       },
+      type: 'area',
+      width: '100%',
     },
-
-    legend: {
-      show: false,
-    },
-
     dataLabels: {
       enabled: false,
     },
+    legend: {
+      show: false,
+    },
     stroke: {
-      curve: "smooth",
+      curve: 'smooth',
     },
-
-    yaxis: {
-      labels: {
-        style: {
-          fontSize: "14px",
-          fontWeight: 600,
-          colors: ["#8c8c8c"],
-        },
-      },
-    },
-
-    xaxis: {
-      labels: {
-        style: {
-          fontSize: "14px",
-          fontWeight: 600,
-          colors: [
-            "#8c8c8c",
-            "#8c8c8c",
-            "#8c8c8c",
-            "#8c8c8c",
-            "#8c8c8c",
-            "#8c8c8c",
-            "#8c8c8c",
-            "#8c8c8c",
-            "#8c8c8c",
-          ],
-        },
-      },
-      categories: [
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-      ],
-    },
-
     tooltip: {
       y: {
         formatter: function (val) {
@@ -81,7 +24,47 @@ const lineChart = {
         },
       },
     },
+    xaxis: {
+      categories: [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
+      ],
+      labels: {
+        colors: ['#8c8c8c'],
+        fontSize: '12px',
+        fontWeight: 300,
+      },
+    },
+    yaxis: {
+      labels: {
+        colors: ['#8c8c8c'],
+        fontSize: '12px',
+        fontWeight: 300,
+      },
+    },
   },
+  series: [
+    {
+      data: [350, 40, 300, 220, 500, 250, 400, 230, 500, 350, 40, 300],
+      name: 'Mobile apps',
+      offsetY: 0,
+    },
+    {
+      data: [30, 90, 40, 140, 290, 290, 340, 230, 400, 30, 90, 40],
+      name: 'Websites',
+      offsetY: 0,
+    },
+  ],
 };
 
 export default lineChart;

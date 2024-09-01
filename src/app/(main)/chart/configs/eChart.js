@@ -1,106 +1,84 @@
 const eChart = {
-  series: [
-    {
-      name: "Sales",
-      data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
-      color: "blue",
-    },
-  ],
-
   options: {
     chart: {
-      type: "bar",
-      width: "100%",
-      height: "auto",
-
+      height: 'auto',
       toolbar: {
         show: false,
       },
-    },
-    plotOptions: {
-      bar: {
-        horizontal: false,
-        columnWidth: "55%",
-        borderRadius: 5,
-      },
+      type: 'bar',
+      width: '100%',
     },
     dataLabels: {
       enabled: false,
     },
+    grid: {
+      borderColor: '#ccc',
+      show: true,
+      strokeDashArray: 2,
+    },
+    plotOptions: {
+      bar: {
+        borderRadius: 7,
+        columnWidth: '70%',
+        horizontal: false,
+      },
+    },
     stroke: {
+      colors: ['transparent'],
       show: true,
       width: 1,
-      colors: ["transparent"],
     },
-    grid: {
-      show: true,
-      borderColor: "#ccc",
-      strokeDashArray: 2,
+    tooltip: {
+      y: {
+        formatter: function (val) {
+          return '$ ' + val + ' thousands';
+        },
+      },
     },
     xaxis: {
       categories: [
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
       ],
       labels: {
-        show: true,
-        align: "right",
-        minWidth: 0,
+        align: 'right',
+        colors: ['#8c8c8c'],
+        fontSize: '12px',
+        fontWeight: 300,
         maxWidth: 160,
-        style: {
-          colors: [
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-          ],
-        },
+        minWidth: 0,
+        show: true,
       },
     },
     yaxis: {
       labels: {
-        show: true,
-        align: "right",
-        minWidth: 0,
+        align: 'right',
+        colors: ['#8c8c8c'],
+        fontSize: '12px',
+        fontWeight: 300,
         maxWidth: 160,
-        style: {
-          colors: [
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-          ],
-        },
-      },
-    },
-
-    tooltip: {
-      y: {
-        formatter: function (val) {
-          return "$ " + val + " thousands";
-        },
+        minWidth: 0,
+        show: true,
       },
     },
   },
+  series: [
+    {
+      color: 'bnb2',
+      data: [450, 200, 100, 220, 500, 100, 400, 230, 500, 450, 200, 100],
+      name: 'Sales',
+    },
+  ],
 };
 
 export default eChart;

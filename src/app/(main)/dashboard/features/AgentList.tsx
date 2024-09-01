@@ -15,7 +15,7 @@ const AgentList = memo(() => {
       {/* Section for Summary */}
       {/* <h2>{t('title.summary')}</h2> */}
       <h2>Summary</h2>
-      <Grid rows={2}>
+      <Grid rows={3}>
         {/* <AgentCard chartType="EChart" title={t('title.summary')} /> */}
         <AgentCard chartType="EChart"/>
         <AgentCard chartType="LineChart"/>
@@ -25,7 +25,7 @@ const AgentList = memo(() => {
       {/* Section for Activity */}
       {/* <h2>{t('title.activity')}</h2> */}
       <h2>Activity</h2>
-      <Grid rows={2}>
+      <Grid rows={3}>
         <AgentCard chartType="LineChart"/>
         <AgentCard chartType="LineChart"/>
         <AgentCard chartType="LineChart"/>
