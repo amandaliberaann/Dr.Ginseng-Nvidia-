@@ -1,155 +1,147 @@
 {
-  "chineseMedicineBasics": [
-    {
-      "cards": [
-        {
-          "avatar": "☯️",
-          "title": "Yin and Yang Theory",
-          "description": "Understand the balance of Yin and Yang as the foundation of health in traditional Chinese medicine.",
-          "tags": ["Yin-Yang", "Balance", "Health"]
-        },
-        {
-          "avatar": "🌿",
-          "title": "Five Elements Theory",
-          "description": "Explore the interplay of the Five Elements and their impact on the body and mind.",
-          "tags": ["Five Elements", "Interconnection", "Harmony"]
-        },
-        {
-          "avatar": "🫀",
-          "title": "Zang-Fu Organs",
-          "description": "Learn about the Zang-Fu organs and their roles in maintaining balance and well-being.",
-          "tags": ["Organs", "Balance", "Health"]
-        },
-        {
-          "avatar": "💫",
-          "title": "Meridian System",
-          "description": "Discover the meridian system, channels that connect the body and facilitate the flow of Qi.",
-          "tags": ["Meridians", "Qi", "Energy Flow"]
-        },
-        {
-          "avatar": "⚕️",
-          "title": "Etiology and Pathogenesis",
-          "description": "Understand the causes and mechanisms of diseases according to traditional Chinese medicine.",
-          "tags": ["Disease Causes", "Pathogenesis", "Prevention"]
-        },
-        {
-          "avatar": "🍃",
-          "title": "Health Preservation",
-          "description": "Learn practical tips for preserving health through diet, lifestyle, and seasonal adjustments.",
-          "tags": ["Health Preservation", "Diet", "Lifestyle"]
-        }
-      ],
-      "title": "Traditional Chinese Medicine Basics"
-    }
-  ],
-  "constitutionHealthTips": [
-    {
-      "cards": [
-        {
-          "avatar": "💪",
-          "title": "Qi Deficiency Health Tips",
-          "description": "Consume foods like astragalus, codonopsis, and jujube to boost Qi. Prevent fatigue, shortness of breath, and susceptibility to illness.",
-          "tags": ["Qi Deficiency", "Energy Boost", "Immune Support"]
-        },
-        {
-          "avatar": "❤️",
-          "title": "Blood Deficiency Health Tips",
-          "description": "Eat foods like angelica, goji berries, and black sesame to nourish blood. Prevent anemia, dizziness, and pale complexion.",
-          "tags": ["Blood Deficiency", "Blood Nourishment", "Anemia Prevention"]
-        },
-        {
-          "avatar": "🔥",
-          "title": "Yang Deficiency Health Tips",
-          "description": "Consume warming foods like lamb, ginger, and cinnamon to strengthen Yang. Prevent cold intolerance, poor digestion, and fatigue.",
-          "tags": ["Yang Deficiency", "Warming Foods", "Digestive Health"]
-        },
-        {
-          "avatar": "💧",
-          "title": "Yin Deficiency Health Tips",
-          "description": "Eat foods like white fungus, lily bulbs, and goji berries to nourish Yin. Prevent night sweats, dry mouth, and insomnia.",
-          "tags": ["Yin Deficiency", "Moisturizing", "Sleep Support"]
-        }
-      ],
-      "title": "Constitution Health Tips"
-    }
-  ],
-  "diseasePrevention": [
-    {
-      "cards": [
-        {
-          "avatar": "🫀",
-          "title": "Cardiovascular Disease Prevention",
-          "description": "Consume fiber-rich and antioxidant foods like oats, apples, and grapes. Control fat and salt intake, maintain moderate exercise, and avoid overexertion.",
-          "tags": ["Cardiovascular Health", "Fiber", "Antioxidants"]
-        },
-        {
-          "avatar": "🍲",
-          "title": "Digestive System Disease Prevention",
-          "description": "Eat mild and easily digestible foods like millet porridge, yam, and pumpkin. Eat at regular intervals, avoid overeating, and manage stress.",
-          "tags": ["Digestive Health", "Easy Digestion", "Stress Management"]
-        },
-        {
-          "avatar": "🌬️",
-          "title": "Respiratory System Disease Prevention",
-          "description": "Consume lung-nourishing foods like pears, white fungus, and lily bulbs. Avoid getting cold, monitor air quality, and engage in regular outdoor activities.",
-          "tags": ["Respiratory Health", "Lung Nourishment", "Outdoor Exercise"]
-        }
-      ],
-      "title": "Disease Prevention Health Tips"
-    }
-  ],
-  "functionalHealth": {
-    "cards": [
-      {
-        "avatar": "💅",
-        "title": "Beauty and Skincare",
-        "description": "Consume collagen-rich and antioxidant foods like pig's trotters, fish maw, and goji berries. Ensure adequate sleep, reduce UV exposure, and supplement with vitamin C.",
-        "tags": ["Beauty", "Collagen", "Antioxidants"]
+  "chineseMedicineBasics": {
+    "cards": {
+      "card1": {
+        "avatar": "☯️",
+        "description": "Understand the importance of Yin-Yang balance as the foundation of health in Traditional Chinese Medicine.",
+        "tags": ["Yin-Yang", "Balance", "Health"],
+        "title": "Yin and Yang Theory"
       },
-      {
-        "avatar": "🏋️‍♂️",
-        "title": "Weight Loss",
-        "description": "Eat low-fat, high-fiber foods like oats, green tea, and vegetables. Maintain regular exercise, control portion sizes, and avoid high-calorie snacks.",
-        "tags": ["Weight Loss", "Low-Fat", "High-Fiber"]
+      "card2": {
+        "avatar": "🌿",
+        "description": "Explore the interaction of the Five Elements and their impact on body and mind.",
+        "tags": ["Five Elements", "Interaction", "Harmony"],
+        "title": "Five Elements Theory"
       },
-      {
-        "avatar": "🛡️",
-        "title": "Immune System Boost",
-        "description": "Consume vitamin C and zinc-rich foods like citrus fruits, nuts, and milk. Exercise regularly, maintain a positive mindset, and ensure adequate sleep.",
-        "tags": ["Immunity", "Vitamin C", "Zinc"]
+      "card3": {
+        "avatar": "🫀",
+        "description": "Learn about the role of Zang-Fu organs in maintaining balance and health.",
+        "tags": ["Zang-Fu Organs", "Balance", "Health"],
+        "title": "Zang-Fu Organs Theory"
+      },
+      "card4": {
+        "avatar": "💫",
+        "description": "Discover the meridian system, channels that connect the body and promote the flow of Qi.",
+        "tags": ["Meridians", "Qi", "Energy Flow"],
+        "title": "Meridian System"
+      },
+      "card5": {
+        "avatar": "⚕️",
+        "description": "Understand the causes and mechanisms of diseases according to Traditional Chinese Medicine.",
+        "tags": ["Disease Causes", "Pathogenesis", "Prevention"],
+        "title": "Etiology and Pathogenesis"
+      },
+      "card6": {
+        "avatar": "🍃",
+        "description": "Learn practical tips for preserving health through diet, lifestyle, and seasonal adjustments.",
+        "tags": ["Health Preservation", "Diet", "Lifestyle"],
+        "title": "Health Preservation"
       }
-    ],
+    },
+    "title": "Traditional Chinese Medicine Basics"
+  },
+  "constitutionHealthTips": {
+    "cards": {
+      "card1": {
+        "avatar": "💪",
+        "description": "Consume foods like astragalus, codonopsis, and jujube to boost Qi. Prevent fatigue, shortness of breath, and susceptibility to illness.",
+        "tags": ["Qi Deficiency", "Energy Boost", "Immune Support"],
+        "title": "Qi Deficiency Health Tips"
+      },
+      "card2": {
+        "avatar": "❤️",
+        "description": "Eat foods like angelica, goji berries, and black sesame to nourish blood. Prevent anemia, dizziness, and pale complexion.",
+        "tags": ["Blood Deficiency", "Blood Nourishment", "Anemia Prevention"],
+        "title": "Blood Deficiency Health Tips"
+      },
+      "card3": {
+        "avatar": "🔥",
+        "description": "Consume warming foods like lamb, ginger, and cinnamon to strengthen Yang. Prevent cold intolerance, poor digestion, and fatigue.",
+        "tags": ["Yang Deficiency", "Warming Foods", "Digestive Health"],
+        "title": "Yang Deficiency Health Tips"
+      },
+      "card4": {
+        "avatar": "💧",
+        "description": "Eat foods like white fungus, lily bulbs, and goji berries to nourish Yin. Prevent night sweats, dry mouth, and insomnia.",
+        "tags": ["Yin Deficiency", "Moisturizing", "Sleep Support"],
+        "title": "Yin Deficiency Health Tips"
+      }
+    },
+    "title": "Constitution Health Tips"
+  },
+  "diseasePrevention": {
+    "cards": {
+      "card1": {
+        "avatar": "🫀",
+        "description": "Consume fiber-rich and antioxidant foods like oats, apples, and grapes. Control fat and salt intake, maintain moderate exercise, and avoid overexertion.",
+        "tags": ["Cardiovascular Health", "Fiber", "Antioxidants"],
+        "title": "Cardiovascular Disease Prevention"
+      },
+      "card2": {
+        "avatar": "🍲",
+        "description": "Eat mild and easily digestible foods like millet porridge, yam, and pumpkin. Eat at regular intervals, avoid overeating, and manage stress.",
+        "tags": ["Digestive Health", "Easy Digestion", "Stress Management"],
+        "title": "Digestive System Disease Prevention"
+      },
+      "card3": {
+        "avatar": "🌬️",
+        "description": "Consume lung-nourishing foods like pears, white fungus, and lily bulbs. Avoid getting cold, monitor air quality, and engage in regular outdoor activities.",
+        "tags": ["Respiratory Health", "Lung Nourishment", "Outdoor Exercise"],
+        "title": "Respiratory System Disease Prevention"
+      }
+    },
+    "title": "Disease Prevention Health Tips"
+  },
+  "functionalHealth": {
+    "cards": {
+      "card1": {
+        "avatar": "💅",
+        "description": "Consume collagen-rich and antioxidant foods like pig's trotters, fish maw, and goji berries. Ensure adequate sleep, reduce UV exposure, and supplement with vitamin C.",
+        "tags": ["Beauty", "Collagen", "Antioxidants"],
+        "title": "Beauty and Skincare"
+      },
+      "card2": {
+        "avatar": "🏋️‍♂️",
+        "description": "Eat low-fat, high-fiber foods like oats, green tea, and vegetables. Maintain regular exercise, control portion sizes, and avoid high-calorie snacks.",
+        "tags": ["Weight Loss", "Low-Fat", "High-Fiber"],
+        "title": "Weight Loss"
+      },
+      "card3": {
+        "avatar": "🛡️",
+        "description": "Consume vitamin C and zinc-rich foods like citrus fruits, nuts, and milk. Exercise regularly, maintain a positive mindset, and ensure adequate sleep.",
+        "tags": ["Immunity", "Vitamin C", "Zinc"],
+        "title": "Immune System Boost"
+      }
+    },
     "title": "Functional Health Tips"
   },
-  "seasonalHealthTips": [
-    {
-      "cards": [
-        {
-          "avatar": "🌱",
-          "title": "Spring Health Tips",
-          "description": "Eat warming foods like onion, ginger, and garlic to boost Yang energy. Prevent colds and allergies, and take care of your liver.",
-          "tags": ["Spring", "Yang Energy", "Liver Health"]
-        },
-        {
-          "avatar": "☀️",
-          "title": "Summer Health Tips",
-          "description": "Consume cooling foods like mung beans, bitter melon, and watermelon. Prevent heatstroke and digestive issues, and stay hydrated.",
-          "tags": ["Summer", "Cooling Foods", "Heat Prevention"]
-        },
-        {
-          "avatar": "🍂",
-          "title": "Autumn Health Tips",
-          "description": "Eat nourishing foods like pears, white fungus, and lily bulbs. Prevent dryness-related issues like respiratory problems and dry skin.",
-          "tags": ["Autumn", "Moisturizing", "Respiratory Health"]
-        },
-        {
-          "avatar": "❄️",
-          "title": "Winter Health Tips",
-          "description": "Consume warming foods like lamb, goji berries, and red dates. Prevent cold-related illnesses and maintain kidney health.",
-          "tags": ["Winter", "Warming Foods", "Kidney Health"]
-        }
-      ],
-      "title": "Seasonal Health Tips"
-    }
-  ]
+  "seasonalHealthTips": {
+    "cards": {
+      "card1": {
+        "avatar": "🌱",
+        "description": "Eat warming foods like onion, ginger, and garlic to boost Yang energy. Prevent colds and allergies, and take care of your liver.",
+        "tags": ["Spring", "Yang Energy", "Liver Health"],
+        "title": "Spring Health Tips"
+      },
+      "card2": {
+        "avatar": "☀️",
+        "description": "Consume cooling foods like mung beans, bitter melon, and watermelon. Prevent heatstroke and digestive issues, and stay hydrated.",
+        "tags": ["Summer", "Cooling Foods", "Heat Prevention"],
+        "title": "Summer Health Tips"
+      },
+      "card3": {
+        "avatar": "🍂",
+        "description": "Eat nourishing foods like pears, white fungus, and lily bulbs. Prevent dryness-related issues like respiratory problems and dry skin.",
+        "tags": ["Autumn", "Moisturizing", "Respiratory Health"],
+        "title": "Autumn Health Tips"
+      },
+      "card4": {
+        "avatar": "❄️",
+        "description": "Consume warming foods like lamb, goji berries, and red dates. Prevent cold-related illnesses and maintain kidney health.",
+        "tags": ["Winter", "Warming Foods", "Kidney Health"],
+        "title": "Winter Health Tips"
+      }
+    },
+    "title": "Seasonal Health Tips"
+  }
 }

@@ -15,7 +15,6 @@ const AgentList = memo(() => {
       <h2>{t(`title.summary`)}</h2>
       {/* Section for Summary */}
       <Grid rows={2}>
-        {/* <AgentCard chartType="EChart" title={t('title.summary')} /> */}
         <AgentCard chartType="EChart"/>
         <AgentCard chartType="LineChart"/>
         <AgentCard chartType="LineChart"/>

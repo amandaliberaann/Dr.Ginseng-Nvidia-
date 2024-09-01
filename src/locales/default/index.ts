@@ -4,6 +4,7 @@ import chat from './chat';
 import clerk from './clerk';
 import common from './common';
 import components from './components';
+import dashboard from './dashboard';
 import error from './error';
 import file from './file';
 import knowledgeBase from './knowledgeBase';
@@ -13,9 +14,9 @@ import migration from './migration';
 import modelProvider from './modelProvider';
 import plugin from './plugin';
 import portal from './portal';
+import query from './query';
 import setting from './setting';
 import welcome from './welcome';
-import dashboard from './dashboard';
 
 const resources = {
   auth,
@@ -23,6 +24,7 @@ const resources = {
   clerk,
   common,
   components,
+  dashboard,
   error,
   file,
   knowledgeBase,
@@ -32,10 +34,10 @@ const resources = {
   modelProvider,
   plugin,
   portal,
+  query,
   setting,
   tool,
   welcome,
-  dashboard,
 } as const;
 
 export default resources;
