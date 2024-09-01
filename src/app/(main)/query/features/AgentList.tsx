@@ -83,6 +83,7 @@ const AgentList = memo<AgentListProps>(({ mobile }) => {
   return (
     <>
       <h2 className={styles.title}>{t('title.recentSubmits')}</h2>
+      <h2 className={styles.title}></h2>
       <Grid rows={3}>
         {agentList.slice(0, recentLength).map((item) => (
           <AgentCard key={item.identifier} {...item} />
