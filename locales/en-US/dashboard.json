@@ -1,0 +1,16 @@
+{
+  "title": {
+    "summary": "Summary",
+    "activity": "Activity",
+    "bodyMeasurements": "Boday Measurements",
+    "cycleTracking": "Cycle Tracking",
+    "hearing": "Hearing",
+    "heart": "Heart",
+    "medications": "Medications",
+    "mobility": "Mobility",
+    "nutrition": "Nutrition",
+    "repiratory": "Respiratory", 
+    "sleep": "Sleep",
+    "symptoms": "Symptoms"
+  }
+}
