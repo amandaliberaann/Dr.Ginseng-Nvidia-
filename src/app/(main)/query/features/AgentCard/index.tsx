@@ -2,7 +2,6 @@ import { Avatar, Tag } from '@lobehub/ui';
 import { Typography } from 'antd';
 import { createStyles } from 'antd-style';
 import { startCase } from 'lodash-es';
-import Link from 'next/link';
 import { memo } from 'react';
 import { Center, Flexbox } from 'react-layout-kit';
 
@@ -60,7 +59,7 @@ interface AgentCardProps extends AgentsMarketIndexItem {
 }
 
 const AgentCard = memo<AgentCardProps>(
-  ({ meta, createAt, author, homepage, identifier, variant }) => {
+  ({ meta, identifier, variant }) => {
     const { avatar, title, description, tags } = meta;
 
     const onAgentCardClick = useMarketStore((s) => s.activateAgent);
@@ -105,16 +104,6 @@ const AgentCard = memo<AgentCardProps>(
               </Center>
             )}
           </Flexbox>
-          {!isCompact && (
-            <Flexbox gap={12} horizontal style={{ fontSize: 12 }}>
-              <Link aria-label={author} href={homepage} target={'_blank'}>
-                @{author}
-              </Link>
-              <time className={styles.time} dateTime={new Date(createAt).toISOString()}>
-                {createAt}
-              </time>
-            </Flexbox>
-          )}
           <Paragraph className={styles.desc} ellipsis={{ rows: 2 }}>
             {description}
           </Paragraph>
