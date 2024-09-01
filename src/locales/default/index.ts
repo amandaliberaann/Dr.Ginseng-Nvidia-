@@ -15,6 +15,7 @@ import plugin from './plugin';
 import portal from './portal';
 import setting from './setting';
 import welcome from './welcome';
+import dashboard from './dashboard';
 
 const resources = {
   auth,
@@ -34,6 +35,7 @@ const resources = {
   setting,
   tool,
   welcome,
+  dashboard,
 } as const;
 
 export default resources;
