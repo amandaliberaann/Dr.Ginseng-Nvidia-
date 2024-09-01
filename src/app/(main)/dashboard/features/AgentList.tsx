@@ -13,7 +13,8 @@ const AgentList = memo(() => {
   return (
     <Flexbox direction="vertical" gap={16}>
       <h2>{t(`title.summary`)}</h2>
-      <Grid rows={3}>
+      {/* Section for Summary */}
+      <Grid rows={2}>
         {/* <AgentCard chartType="EChart" title={t('title.summary')} /> */}
         <AgentCard chartType="EChart"/>
         <AgentCard chartType="LineChart"/>
@@ -21,7 +22,8 @@ const AgentList = memo(() => {
       </Grid>
 
       <h2>{t("title.activity")}</h2>
-      <Grid rows={3}>
+      {/* Section for Activity */}
+      <Grid rows={2}>
         <AgentCard chartType="LineChart"/>
         <AgentCard chartType="LineChart"/>
         <AgentCard chartType="LineChart"/>
