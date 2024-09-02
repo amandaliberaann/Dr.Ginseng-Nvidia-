@@ -39,7 +39,6 @@ const MedicalList = memo<MedicalListProps>(({ mobile }) => {
     s.useFetchAgentList,
   ]);
   const { isLoading } = useFetchAgentList();
-  //   const agentList = useMarketStore(agentMarketSelectors.getAgentList, isEqual);
   const { styles } = useStyles();
   const recentLength = mobile ? 3 : 6;
 

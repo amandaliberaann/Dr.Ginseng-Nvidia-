@@ -6,13 +6,13 @@ import { metadataModule } from '@/server/metadata';
 import { translation } from '@/server/translation';
 import { isMobileDevice } from '@/utils/responsive';
 
-import AgentList from './features/AgentList';
+import ChartList from './features/ChartList';
 
 export const generateMetadata = async () => {
   const { t } = await translation('metadata');
   return metadataModule.generate({
-    description: t('market.description'),
-    title: t('market.title'),
+    description: t('dashboard.description'),
+    title: t('dashboard.title'),
     url: '/dashboard',
   });
 };
@@ -21,8 +21,8 @@ const Page = async () => {
   const mobile = isMobileDevice();
   const { t } = await translation('metadata');
   const ld = ldModule.generate({
-    description: t('market.description'),
-    title: t('market.title'),
+    description: t('dashboard.description'),
+    title: t('dashboard.title'),
     url: '/dashboard',
   });
 
@@ -30,8 +30,7 @@ const Page = async () => {
     <>
       <StructuredData ld={ld} />
       <Flexbox gap={mobile ? 16 : 24}>
-        {/* <AgentList mobile={mobile} /> */}
-        <AgentList />
+        <ChartList />
       </Flexbox>
     </>
   );
