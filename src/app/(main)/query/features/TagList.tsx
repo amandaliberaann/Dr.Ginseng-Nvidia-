@@ -2,12 +2,10 @@
 
 import { Button, Skeleton } from 'antd';
 import { createStyles, useResponsive } from 'antd-style';
-import isEqual from 'fast-deep-equal';
 import { startCase } from 'lodash-es';
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
-
-import { agentMarketSelectors, useMarketStore } from '@/store/market';
 
 const useStyles = createStyles(({ css, token, isDarkMode }) => ({
   active: css`
@@ -30,19 +28,48 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
 }));
 
 const TagList = memo(() => {
+  const { t } = useTranslation('query');
   const { cx, styles } = useStyles();
   const { md = true } = useResponsive();
-  const [searchKeywords, setSearchKeywords] = useMarketStore((s) => [
-    s.searchKeywords,
-    s.setSearchKeywords,
-  ]);
-  const agentTagList = useMarketStore(agentMarketSelectors.getAgentTagList, isEqual);
+  const [tags, setTags] = useState<string[]>([]);
+  const [searchKeywords, setSearchKeywords] = useState<string>('');
 
-  if (agentTagList?.length === 0) {
+  useEffect(() => {
+    // 提取各个部分的 tags 并合并
+    const chineseMedicineTags = Object.values(
+      t('chineseMedicineBasics.cards', { returnObjects: true }),
+    ).flatMap((card) => card.tags);
+    const constitutionHealthTipsTags = Object.values(
+      t('constitutionHealthTips.cards', { returnObjects: true }),
+    ).flatMap((card) => card.tags);
+    const diseasePreventionTags = Object.values(
+      t('diseasePrevention.cards', { returnObjects: true }),
+    ).flatMap((card) => card.tags);
+    const functionalHealthTags = Object.values(
+      t('functionalHealth.cards', { returnObjects: true }),
+    ).flatMap((card) => card.tags);
+    const seasonalHealthTipsTags = Object.values(
+      t('seasonalHealthTips.cards', { returnObjects: true }),
+    ).flatMap((card) => card.tags);
+
+    // 合并所有 tags 并去重
+    const allTags = Array.from(
+      new Set([
+        ...chineseMedicineTags,
+        ...constitutionHealthTipsTags,
+        ...diseasePreventionTags,
+        ...functionalHealthTags,
+        ...seasonalHealthTipsTags,
+      ]),
+    );
+    setTags(allTags);
+  }, [t]); // 依赖 `t`，每当 `t` 变化时重新运行
+
+  if (tags.length === 0) {
     return <Skeleton paragraph={{ rows: 4 }} title={false} />;
   }
 
-  const list = md ? agentTagList : agentTagList.slice(0, 20);
+  const list = md ? tags : tags.slice(0, 20);
 
   return (
     <Flexbox gap={6} horizontal style={{ flexWrap: 'wrap' }}>

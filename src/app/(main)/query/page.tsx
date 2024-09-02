@@ -6,9 +6,8 @@ import { metadataModule } from '@/server/metadata';
 import { translation } from '@/server/translation';
 import { isMobileDevice } from '@/utils/responsive';
 
-// import AgentList from './features/AgentList';
-import MedicalList from './features/MedicalList';
 import AgentSearchBar from './features/AgentSearchBar';
+import MedicalList from './features/MedicalList';
 import TagList from './features/TagList';
 
 export const generateMetadata = async () => {

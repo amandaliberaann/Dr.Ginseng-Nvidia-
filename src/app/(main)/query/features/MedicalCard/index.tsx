@@ -5,14 +5,7 @@ import { startCase } from 'lodash-es';
 import { memo } from 'react';
 import { Center, Flexbox } from 'react-layout-kit';
 
-
-
-import { useMarketStore } from '@/store/market';
-
-
-
 import MedicalCardBanner from './MedicalCardBanner';
-
 
 const { Paragraph, Title } = Typography;
 
@@ -62,72 +55,73 @@ interface SimpleCardProps {
   avatar: string;
   description: string;
   identifier: string;
+  onClick: (id: string) => void; // click function
   tags: string[];
   title: string;
   variant?: 'default' | 'compact';
 }
 
-const MedicalCard = memo<SimpleCardProps>(({ avatar, title, description, tags, identifier, variant }) => {
+const MedicalCard = memo<SimpleCardProps>(
+  ({ avatar, title, description, tags, identifier, onClick, variant }) => {
+    const { styles, theme } = useStyles();
+    const isCompact = variant === 'compact';
 
-  const onAgentCardClick = useMarketStore((s) => s.activateAgent);
-  const { styles, theme } = useStyles();
-  const isCompact = variant === 'compact';
-
-  return (
-    <Flexbox
-      className={styles.container}
-      gap={24}
-      key={identifier}
-      onClick={() => onAgentCardClick(identifier)}
-    >
-      {!isCompact && <MedicalCardBanner avatar={avatar} />}
-      <Flexbox className={styles.inner} gap={12}>
-        <Flexbox align={'flex-end'} gap={16} horizontal justify={'space-between'} width={'100%'}>
-          <Title className={styles.title} ellipsis={{ rows: 1, tooltip: title }} level={3}>
-            {title}
-          </Title>
-          {isCompact ? (
-            <Avatar
-              alt={title}
-              avatar={avatar}
-              size={40}
-              style={{ alignSelf: 'flex-end' }}
-              title={title}
-            />
-          ) : (
-            <Center
-              flex={'none'}
-              height={64}
-              style={{
-                background: theme.colorBgContainer,
-                borderRadius: '50%',
-                marginTop: -6,
-                overflow: 'hidden',
-                zIndex: 2,
-              }}
-              width={64}
-            >
-              <Avatar alt={title} avatar={avatar} size={56} title={title} />
-            </Center>
-          )}
-        </Flexbox>
-        <Paragraph className={styles.desc} ellipsis={{ rows: 2 }}>
-          {description}
-        </Paragraph>
-        <Flexbox gap={6} horizontal style={{ flexWrap: 'wrap' }}>
-          {(tags as string[])
-            .slice(0, 4)
-            .filter(Boolean)
-            .map((tag: string, index) => (
-              <Tag key={index} style={{ margin: 0 }}>
-                {startCase(tag).trim()}
-              </Tag>
-            ))}
+    return (
+      <Flexbox
+        className={styles.container}
+        gap={24}
+        key={identifier}
+        onClick={() => onClick(identifier)} // click and send identifier
+      >
+        {!isCompact && <MedicalCardBanner avatar={avatar} />}
+        <Flexbox className={styles.inner} gap={12}>
+          <Flexbox align={'flex-end'} gap={16} horizontal justify={'space-between'} width={'100%'}>
+            <Title className={styles.title} ellipsis={{ rows: 1, tooltip: title }} level={3}>
+              {title}
+            </Title>
+            {isCompact ? (
+              <Avatar
+                alt={title}
+                avatar={avatar}
+                size={40}
+                style={{ alignSelf: 'flex-end' }}
+                title={title}
+              />
+            ) : (
+              <Center
+                flex={'none'}
+                height={64}
+                style={{
+                  background: theme.colorBgContainer,
+                  borderRadius: '50%',
+                  marginTop: -6,
+                  overflow: 'hidden',
+                  zIndex: 2,
+                }}
+                width={64}
+              >
+                <Avatar alt={title} avatar={avatar} size={56} title={title} />
+              </Center>
+            )}
+          </Flexbox>
+          <Paragraph className={styles.desc} ellipsis={{ rows: 2 }}>
+            {description}
+          </Paragraph>
+          <Flexbox gap={6} horizontal style={{ flexWrap: 'wrap' }}>
+            {(tags as string[])
+              .slice(0, 4)
+              .filter(Boolean)
+              .map((tag: string, index) => (
+                <Tag key={index} style={{ margin: 0 }}>
+                  {startCase(tag).trim()}
+                </Tag>
+              ))}
+          </Flexbox>
         </Flexbox>
       </Flexbox>
-    </Flexbox>
-  );
-});
+    );
+  },
+);
 
 MedicalCard.displayName = 'MedicalCard';
 
