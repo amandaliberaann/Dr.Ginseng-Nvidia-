@@ -6,7 +6,8 @@ import { metadataModule } from '@/server/metadata';
 import { translation } from '@/server/translation';
 import { isMobileDevice } from '@/utils/responsive';
 
-import AgentList from './features/AgentList';
+// import AgentList from './features/AgentList';
+import MedicalList from './features/MedicalList';
 import AgentSearchBar from './features/AgentSearchBar';
 import TagList from './features/TagList';
 
@@ -34,7 +35,7 @@ const Page = async () => {
       <AgentSearchBar mobile={mobile} />
       <Flexbox gap={mobile ? 16 : 24}>
         <TagList />
-        <AgentList mobile={mobile} />
+        <MedicalList mobile={mobile} />
       </Flexbox>
     </>
   );
