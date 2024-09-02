@@ -34,11 +34,11 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
   `,
 }));
 
-interface AgentCardProps {
+interface ChartCardProps {
   chartType: keyof typeof chartComponentsMap; // chartType must be a key of chartComponentsMap
 }
 
-const AgentCard = memo<AgentCardProps>(({ chartType }) => {
+const ChartCard = memo<ChartCardProps>(({ chartType }) => {
   const { styles } = useStyles();
   const ChartComponent = chartComponentsMap[chartType]; // Dynamically select the chart component based on chartType
 
@@ -49,6 +49,6 @@ const AgentCard = memo<AgentCardProps>(({ chartType }) => {
   );
 });
 
-AgentCard.displayName = 'AgentCard';
+ChartCard.displayName = 'ChartCard';
 
-export default AgentCard;
+export default ChartCard;

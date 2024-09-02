@@ -3,12 +3,9 @@ import { Flexbox } from 'react-layout-kit';
 import SafeSpacing from '@/components/SafeSpacing';
 import { MAX_WIDTH } from '@/const/layoutTokens';
 
-import { LayoutProps } from '../type';
-import DetailSidebar from './DetailSidebar';
-import Header from './Header';
-import Hero from './Hero';
+import { LayoutProps } from './type';
 
-const Layout = ({ children, detail }: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Flexbox
@@ -17,7 +14,6 @@ const Layout = ({ children, detail }: LayoutProps) => {
         style={{ position: 'relative' }}
         width={'100%'}
       >
-        <Header />
         <Flexbox height={'100%'} horizontal style={{ position: 'relative' }} width={'100%'}>
           <Flexbox
             align={'center'}
@@ -27,11 +23,9 @@ const Layout = ({ children, detail }: LayoutProps) => {
           >
             <SafeSpacing />
             <Flexbox gap={16} style={{ maxWidth: MAX_WIDTH, position: 'relative', width: '100%' }}>
-              <Hero />
               {children}
             </Flexbox>
           </Flexbox>
-          <DetailSidebar>{detail}</DetailSidebar>
         </Flexbox>
       </Flexbox>
       {/* ↓ cloud slot ↓ */}
@@ -41,6 +35,6 @@ const Layout = ({ children, detail }: LayoutProps) => {
   );
 };
 
-Layout.displayName = 'DesktopMarketLayout';
+Layout.displayName = 'DesktopDashboardLayout';
 
 export default Layout;

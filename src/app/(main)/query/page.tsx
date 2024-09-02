@@ -14,8 +14,8 @@ import TagList from './features/TagList';
 export const generateMetadata = async () => {
   const { t } = await translation('metadata');
   return metadataModule.generate({
-    description: t('market.description'),
-    title: t('market.title'),
+    description: t('query.description'),
+    title: t('query.title'),
     url: '/query',
   });
 };
@@ -24,8 +24,8 @@ const Page = async () => {
   const mobile = isMobileDevice();
   const { t } = await translation('metadata');
   const ld = ldModule.generate({
-    description: t('market.description'),
-    title: t('market.title'),
+    description: t('query.description'),
+    title: t('query.title'),
     url: '/query',
   });
 

@@ -1,18 +1,26 @@
 {
   "chat": {
-    "description": "LobeChat offers you the best ChatGPT, OLLaMA, Gemini, Claude WebUI user experience",
-    "title": "LobeChat: Personal LLM Productivity Tool, Give Yourself a Smarter Brain"
+    "description": "Dr.Ginseng offers an intelligent AI chat assistant to help you with wellness inquiries, daily journaling, and personalized advice.",
+    "title": "Smart Wellness AI Assistant"
+  },
+  "dashboard": {
+    "description": "Analyze your comprehensive biometric data, including steps, heart rate, sleep, and nutrition.",
+    "title": "Health Monitoring and Analysis"
   },
   "market": {
-    "description": "Content creation, copywriting, Q&A, image generation, video generation, voice generation, smart assistants, automation workflows, customize your own AI / GPTs / OLLaMA intelligent assistant",
-    "title": "Assistant Market"
+    "description": "Content creation, copywriting, Q&A, image generation, video production, voice synthesis, intelligent agents, and automated workflows - customize your own AI/GPTs/OLLaMA smart assistant.",
+    "title": "Assistant Marketplace"
   },
   "plugins": {
-    "description": "Search, chart generation, academic, image generation, video generation, voice generation, automation workflows, customize ChatGPT / OLLaMA exclusive ToolCall plugin capabilities",
-    "title": "Plugin Market"
+    "description": "Search, chart generation, academic tools, image creation, video production, voice synthesis, and automated workflows - customize ChatGPT/OLLaMA with specialized ToolCall plugins.",
+    "title": "Plugin Marketplace"
+  },
+  "query": {
+    "description": "A knowledge base for Chinese medicine wellness. Search for wellness tips based on keywords and tags.",
+    "title": "Chinese Medicine Wellness Guide"
   },
   "welcome": {
-    "description": "LobeChat offers you the best ChatGPT, OLLaMA, Gemini, Claude WebUI user experience",
-    "title": "Welcome to LobeChat: Personal LLM Productivity Tool, Give Yourself a Smarter Brain"
+    "description": "Dr.Ginseng provides comprehensive biometric data analysis, a wellness knowledge base, and an intelligent AI assistant to offer you the best wellness experience.",
+    "title": "Dr.Ginseng: Your Intelligent Wellness Expert"
   }
 }
