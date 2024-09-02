@@ -5,7 +5,7 @@ import { Skeleton } from 'antd';
 import { createStyles } from 'antd-style';
 import dynamic from 'next/dynamic';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { memo, useEffect, useLayoutEffect, useState } from 'react';
+import { memo, useLayoutEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useMarketStore } from '@/store/market';
