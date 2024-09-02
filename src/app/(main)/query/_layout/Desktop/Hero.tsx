@@ -3,6 +3,7 @@
 import { GridBackground } from '@lobehub/ui';
 import { createStyles } from 'antd-style';
 import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Center } from 'react-layout-kit';
 
 const useStyles = createStyles(({ css, responsive }) => ({
@@ -28,10 +29,11 @@ const useStyles = createStyles(({ css, responsive }) => ({
 }));
 
 const Hero = memo(() => {
+  const { t } = useTranslation('query');
   const { theme, styles } = useStyles();
   return (
     <Center>
-      <h1 className={styles.title}>Find & Use The Best Assistants</h1>
+      <h1 className={styles.title}>{t('hero')}</h1>
       <GridBackground animation className={styles.background} colorFront={theme.colorText} random />
     </Center>
   );
