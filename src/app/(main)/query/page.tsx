@@ -1,14 +1,10 @@
-import { Flexbox } from 'react-layout-kit';
-
 import StructuredData from '@/components/StructuredData';
 import { ldModule } from '@/server/ld';
 import { metadataModule } from '@/server/metadata';
 import { translation } from '@/server/translation';
 import { isMobileDevice } from '@/utils/responsive';
 
-import AgentSearchBar from './features/AgentSearchBar';
-import MedicalList from './features/MedicalList';
-import TagList from './features/TagList';
+import MedicalDashboard from './features/MedicalDashboard';
 
 export const generateMetadata = async () => {
   const { t } = await translation('metadata');
@@ -31,11 +27,7 @@ const Page = async () => {
   return (
     <>
       <StructuredData ld={ld} />
-      <AgentSearchBar mobile={mobile} />
-      <Flexbox gap={mobile ? 16 : 24}>
-        <TagList />
-        <MedicalList mobile={mobile} />
-      </Flexbox>
+      <MedicalDashboard mobile={mobile} />
     </>
   );
 };

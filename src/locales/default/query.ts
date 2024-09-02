@@ -170,6 +170,7 @@ export default {
     title: '功能性养生建议',
   },
   hero: '您的最佳中医养生建议',
+  placeholder: '搜索助手名称介绍或关键词...',
   seasonalHealthTips: {
     cards: {
       card041: {
