@@ -1,6 +1,6 @@
 {
+  "hero": "健康监测分析",
   "title": {
-    "summary": "总结",
     "activity": "活动",
     "bodyMeasurements": "身体测量",
     "cycleTracking": "周期追踪",
@@ -11,6 +11,7 @@
     "nutrition": "营养",
     "repiratory": "呼吸系统",
     "sleep": "睡眠",
+    "summary": "总结",
     "symptoms": "症状"
   }
 }
