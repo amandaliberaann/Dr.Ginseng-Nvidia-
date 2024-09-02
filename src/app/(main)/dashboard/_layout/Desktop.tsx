@@ -3,6 +3,7 @@ import { Flexbox } from 'react-layout-kit';
 import SafeSpacing from '@/components/SafeSpacing';
 import { MAX_WIDTH } from '@/const/layoutTokens';
 
+import Hero from './Hero';
 import { LayoutProps } from './type';
 
 const Layout = ({ children }: LayoutProps) => {
@@ -23,6 +24,7 @@ const Layout = ({ children }: LayoutProps) => {
           >
             <SafeSpacing />
             <Flexbox gap={16} style={{ maxWidth: MAX_WIDTH, position: 'relative', width: '100%' }}>
+              <Hero />
               {children}
             </Flexbox>
           </Flexbox>

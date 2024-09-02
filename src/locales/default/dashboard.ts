@@ -1,4 +1,5 @@
 export default {
+  hero: '健康监测分析',
   title: {
     activity: '活动',
     bodyMeasurements: '身体测量',

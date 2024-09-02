@@ -1,4 +1,5 @@
 {
+  "hero": "Health Monitoring and Analysis",
   "title": {
     "summary": "Summary",
     "activity": "Activity",
@@ -9,7 +10,7 @@
     "medications": "Medications",
     "mobility": "Mobility",
     "nutrition": "Nutrition",
-    "repiratory": "Respiratory", 
+    "repiratory": "Respiratory",
     "sleep": "Sleep",
     "symptoms": "Symptoms"
   }
