@@ -27,12 +27,16 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
   `,
 }));
 
-const TagList = memo(() => {
+interface TagListProps {
+  searchKeywords: string; // 新增接收 searchKeywords
+  setSelectedTag: (tag: string) => void;
+}
+
+const TagList = memo<TagListProps>(({ setSelectedTag, searchKeywords }) => {
   const { t } = useTranslation('query');
   const { cx, styles } = useStyles();
   const { md = true } = useResponsive();
   const [tags, setTags] = useState<string[]>([]);
-  const [searchKeywords, setSearchKeywords] = useState<string>('');
 
   useEffect(() => {
     // 提取各个部分的 tags 并合并
@@ -69,26 +73,31 @@ const TagList = memo(() => {
     return <Skeleton paragraph={{ rows: 4 }} title={false} />;
   }
 
-  const list = md ? tags : tags.slice(0, 20);
+  // 根据 searchKeywords 过滤标签
+  const filteredTags = searchKeywords
+    ? tags.filter((tag) => tag.toLowerCase().includes(searchKeywords.toLowerCase()))
+    : tags;
+
+  const list = md ? filteredTags : filteredTags.slice(0, 20);
 
   return (
     <Flexbox gap={6} horizontal style={{ flexWrap: 'wrap' }}>
-      {list.map((item) => {
-        const isActive = searchKeywords === item;
-        return (
-          <Button
-            className={cx(styles.tag, isActive && styles.active)}
-            key={item}
-            onClick={() => {
-              setSearchKeywords(isActive ? '' : item);
-            }}
-            shape={'round'}
-            size={'small'}
-          >
-            {startCase(item)}
-          </Button>
-        );
-      })}
+      {list.map((item) => (
+        <Button
+          className={cx(styles.tag)}
+          key={item}
+          onClick={() => {
+            setSelectedTag(String(item));
+          }}
+          onDoubleClick={() => {
+            setSelectedTag(''); // 双击取消标签选择
+          }}
+          shape={'round'}
+          size={'small'}
+        >
+          {startCase(item)}
+        </Button>
+      ))}
     </Flexbox>
   );
 });

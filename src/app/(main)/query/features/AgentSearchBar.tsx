@@ -3,40 +3,30 @@
 import { SearchBar } from '@lobehub/ui';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import useControlledState from 'use-merge-value';
-
-import { useMarketStore } from '@/store/market';
 
 interface AgentSearchBarProps {
   mobile?: boolean;
+  searchKeywords: string;
+  setSearchKeywords: (value: string) => void;
 }
 
-const AgentSearchBar = memo<AgentSearchBarProps>(({ mobile }) => {
-  const { t } = useTranslation('market');
-  const [searchKeywords, setSearchKeywords] = useMarketStore((s) => [
-    s.searchKeywords,
-    s.setSearchKeywords,
-  ]);
+const AgentSearchBar = memo<AgentSearchBarProps>(
+  ({ mobile, searchKeywords, setSearchKeywords }) => {
+    const { t } = useTranslation('query');
 
-  const [keyword, setKeyword] = useControlledState(searchKeywords, {
-    onChange: setSearchKeywords,
-    value: searchKeywords,
-  });
-
-  return (
-    <SearchBar
-      allowClear
-      enableShortKey={!mobile}
-      onChange={(e) => {
-        setKeyword(e.target.value);
-      }}
-      placeholder={t('search.placeholder')}
-      shortKey={'k'}
-      spotlight={!mobile}
-      type={mobile ? 'block' : 'ghost'}
-      value={keyword}
-    />
-  );
-});
+    return (
+      <SearchBar
+        allowClear
+        enableShortKey={!mobile}
+        onChange={(e) => setSearchKeywords(e.target.value)}
+        placeholder={t('placeholder')}
+        shortKey={'k'}
+        spotlight={!mobile}
+        type={mobile ? 'block' : 'ghost'}
+        value={searchKeywords}
+      />
+    );
+  },
+);
 
 export default AgentSearchBar;
