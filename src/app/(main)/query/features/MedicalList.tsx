@@ -99,6 +99,7 @@ const MedicalList = memo<MedicalListProps>(({ mobile, searchKeywords, selectedTa
   if (
     isLoading ||
     (!searchKeywords &&
+      !selectedTag &&
       [
         chineseMedicineBasicsArray,
         constitutionHealthTipsArray,
