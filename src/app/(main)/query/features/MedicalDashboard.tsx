@@ -1,10 +1,10 @@
 'use client';
 
-import { memo, useState, useEffect } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { Flexbox } from 'react-layout-kit';
 
-import AgentSearchBar from './AgentSearchBar';
 import MedicalList from './MedicalList';
+import MedicalSearchBar from './MedicalSearchBar';
 import TagList from './TagList';
 
 interface DashboardProps {
@@ -24,7 +24,7 @@ const MedicalDashboard = memo<DashboardProps>(({ mobile }) => {
 
   return (
     <>
-      <AgentSearchBar
+      <MedicalSearchBar
         mobile={mobile}
         searchKeywords={searchKeywords}
         setSearchKeywords={setSearchKeywords}

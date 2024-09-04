@@ -26,13 +26,75 @@ const ChartList = memo(() => {
     <Flexbox direction="vertical" gap={16}>
       <h2 className={styles.title}>{t(`title.summary`)}</h2>
       {/* Section for Summary */}
-      <Grid rows={2}>
+      <Grid rows={1}>
         <ChartCard chartType="EChart" />
+      </Grid>
+
+      <h2 className={styles.title}>{t('title.activity')}</h2>
+      {/* Section for Activity */}
+      <Grid rows={2}>
+        <ChartCard chartType="LineChart" />
         <ChartCard chartType="LineChart" />
         <ChartCard chartType="LineChart" />
       </Grid>
 
-      <h2 className={styles.title}>{t('title.activity')}</h2>
+      <h2 className={styles.title}>{t('title.bodyMeasurements')}</h2>
+      {/* Section for Activity */}
+      <Grid rows={2}>
+        <ChartCard chartType="LineChart" />
+        <ChartCard chartType="LineChart" />
+        <ChartCard chartType="LineChart" />
+      </Grid>
+
+      <h2 className={styles.title}>{t('title.cycleTracking')}</h2>
+      {/* Section for Activity */}
+      <Grid rows={2}>
+        <ChartCard chartType="LineChart" />
+        <ChartCard chartType="LineChart" />
+        <ChartCard chartType="LineChart" />
+      </Grid>
+
+      <h2 className={styles.title}>{t('title.sleep')}</h2>
+      {/* Section for Activity */}
+      <Grid rows={2}>
+        <ChartCard chartType="LineChart" />
+        <ChartCard chartType="LineChart" />
+        <ChartCard chartType="LineChart" />
+      </Grid>
+
+      <h2 className={styles.title}>{t('title.nutrition')}</h2>
+      {/* Section for Activity */}
+      <Grid rows={2}>
+        <ChartCard chartType="LineChart" />
+        <ChartCard chartType="LineChart" />
+        <ChartCard chartType="LineChart" />
+      </Grid>
+
+      <h2 className={styles.title}>{t('title.repiratory')}</h2>
+      {/* Section for Activity */}
+      <Grid rows={2}>
+        <ChartCard chartType="LineChart" />
+        <ChartCard chartType="LineChart" />
+        <ChartCard chartType="LineChart" />
+      </Grid>
+
+      <h2 className={styles.title}>{t('title.medications')}</h2>
+      {/* Section for Activity */}
+      <Grid rows={2}>
+        <ChartCard chartType="LineChart" />
+        <ChartCard chartType="LineChart" />
+        <ChartCard chartType="LineChart" />
+      </Grid>
+
+      <h2 className={styles.title}>{t('title.hearing')}</h2>
+      {/* Section for Activity */}
+      <Grid rows={2}>
+        <ChartCard chartType="LineChart" />
+        <ChartCard chartType="LineChart" />
+        <ChartCard chartType="LineChart" />
+      </Grid>
+
+      <h2 className={styles.title}>{t('title.symptoms')}</h2>
       {/* Section for Activity */}
       <Grid rows={2}>
         <ChartCard chartType="LineChart" />
