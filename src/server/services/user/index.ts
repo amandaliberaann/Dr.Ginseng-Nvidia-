@@ -82,13 +82,18 @@ export class UserService {
     const phone = params.phone_numbers.find((e) => e.id === params.primary_phone_number_id);
 
     await userModel.updateUser(id, {
+      age: params.unsafe_metadata.age as number | null | undefined,
       avatar: params.image_url,
       email: email?.email_address,
       firstName: params.first_name,
+      gender: params.unsafe_metadata.gender as string | null | undefined,
+      goal: params.unsafe_metadata.goal as string | null | undefined,
+      height: params.unsafe_metadata.height as number | null | undefined,
       id,
       lastName: params.last_name,
       phone: phone?.phone_number,
       username: params.username,
+      weight: params.unsafe_metadata.weight as number | null | undefined,
     });
 
     return NextResponse.json({ message: 'user updated', success: true }, { status: 200 });

@@ -14,6 +14,8 @@ export interface UserAuthAction {
    * universal login method
    */
   openLogin: () => Promise<void>;
+  openSignup: () => Promise<void>;
+
   openUserProfile: () => Promise<void>;
 }
 
@@ -42,6 +44,27 @@ export const createAuthSlice: StateCreator<
   openLogin: async () => {
     if (enableClerk) {
       get().clerkSignIn?.({ fallbackRedirectUrl: location.toString() });
+      //get().clerkSignUp?.({ forceRedirectUrl: '/signup' });
+
+      return;
+    }
+
+    const enableNextAuth = get().enabledNextAuth;
+    if (enableNextAuth) {
+      const { signIn } = await import('next-auth/react');
+      // Check if only one provider is available
+      const providers = get()?.oAuthSSOProviders;
+      if (providers && providers.length === 1) {
+        signIn(providers[0]);
+        return;
+      }
+      signIn();
+    }
+  },
+  openSignup: async () => {
+    if (enableClerk) {
+      //get().clerkSignIn?.({ fallbackRedirectUrl: location.toString() });
+      get().clerkSignUp?.({ fallbackRedirectUrl: '/health' });
 
       return;
     }
@@ -61,6 +84,7 @@ export const createAuthSlice: StateCreator<
 
   openUserProfile: async () => {
     if (enableClerk) {
+      // window.location.href = '/profile';
       get().clerkOpenUserProfile?.();
 
       return;

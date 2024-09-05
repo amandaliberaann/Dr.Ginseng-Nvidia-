@@ -7,6 +7,10 @@
     "description": "Analyze your comprehensive biometric data, including steps, heart rate, sleep, and nutrition.",
     "title": "Health Monitoring and Analysis"
   },
+   "healthform": {
+    "description": "Personal data collection, including steps, heart rate, sleep, and nutrition.",
+    "title": "Personal Health Data Collection"
+  },
   "market": {
     "description": "Content creation, copywriting, Q&A, image generation, video production, voice synthesis, intelligent agents, and automated workflows - customize your own AI/GPTs/OLLaMA smart assistant.",
     "title": "Assistant Marketplace"

@@ -13,7 +13,7 @@ export const generateMetadata = async () => {
 };
 
 const Page = () => {
-  return <SignIn path="/login" />;
+  return <SignIn path="/login" signUpUrl="/signup" />;
 };
 
 Page.displayName = 'Login';

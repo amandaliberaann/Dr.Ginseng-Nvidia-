@@ -11,7 +11,7 @@ import { LobeUser } from '@/types/user';
 const UserUpdater = memo(() => {
   const { isLoaded, user, isSignedIn } = useUser();
 
-  const { session, openUserProfile, signOut, openSignIn } = useClerk();
+  const { session, openUserProfile, signOut, openSignIn, openSignUp } = useClerk();
 
   const useStoreUpdater = createStoreUpdater(useUserStore);
 
@@ -31,6 +31,7 @@ const UserUpdater = memo(() => {
   useStoreUpdater('clerkUser', user);
   useStoreUpdater('clerkSession', session);
   useStoreUpdater('clerkSignIn', openSignIn);
+  useStoreUpdater('clerkSignUp', openSignUp);
   useStoreUpdater('clerkOpenUserProfile', openUserProfile);
   useStoreUpdater('clerkSignOut', signOut);
 

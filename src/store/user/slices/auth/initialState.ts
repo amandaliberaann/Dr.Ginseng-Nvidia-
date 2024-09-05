@@ -3,6 +3,7 @@ import {
   ActiveSessionResource,
   SignInProps,
   SignOut,
+  SignUpProps,
   UserProfileProps,
   UserResource,
 } from '@clerk/types';
@@ -15,6 +16,7 @@ export interface UserAuthState {
   clerkSession?: ActiveSessionResource;
   clerkSignIn?: (props?: SignInProps) => void;
   clerkSignOut?: SignOut;
+  clerkSignUp?: (props?: SignUpProps) => void;
   clerkUser?: UserResource;
   enabledNextAuth?: boolean;
   isLoaded?: boolean;

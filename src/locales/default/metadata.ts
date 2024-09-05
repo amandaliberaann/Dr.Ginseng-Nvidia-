@@ -7,6 +7,10 @@ export default {
     description: '图表分析个人的全面生物监测数据，包括步数、心率、睡眠和营养等。',
     title: '健康监测分析',
   },
+  healthform: {
+    description: '用户基本信息收集。',
+    title: '请填写下面的表格',
+  },
   market: {
     description:
       '内容创作、文案、问答、图像生成、视频生成、语音生成、智能 Agent、自动化工作流，定制你专属的 AI / GPTs / OLLaMA 智能助手',
@@ -25,5 +29,5 @@ export default {
     description:
       'Dr.Ginseng 提供全面的生物数据监测分析、养生知识库和智能AI助手，为您带来最佳的养生体验。',
     title: 'Dr.Ginseng：您的智能养生专家',
-  }
+  },
 };

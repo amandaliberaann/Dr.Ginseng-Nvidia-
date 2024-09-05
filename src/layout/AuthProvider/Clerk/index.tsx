@@ -45,7 +45,8 @@ const Clerk = memo(({ children }: PropsWithChildren) => {
     <ClerkProvider
       appearance={updatedAppearance}
       localization={localization}
-      signUpUrl={!enableClerkSignUp ? '/login' : '/signup'} // Redirect sign-up to sign-in if disabled
+      // signUpUrl={!enableClerkSignUp ? '/login' : '/signup'}
+      signUpUrl="/signup"
     >
       {children}
       <UserUpdater />

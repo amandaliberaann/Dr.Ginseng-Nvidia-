@@ -65,7 +65,7 @@ export class UserModel {
     }
 
     const state = result[0];
-
+    console.log('State', state);
     // Decrypt keyVaults
     let decryptKeyVaults = {};
     if (state.settingsKeyVaults) {

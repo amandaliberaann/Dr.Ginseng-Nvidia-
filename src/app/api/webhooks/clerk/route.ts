@@ -12,6 +12,7 @@ if (authEnv.NEXT_PUBLIC_ENABLE_CLERK_AUTH && isServerMode && !authEnv.CLERK_WEBH
 }
 
 export const POST = async (req: Request): Promise<NextResponse> => {
+  console.log('Processing POST request');
   const payload = await validateRequest(req, authEnv.CLERK_WEBHOOK_SECRET!);
 
   if (!payload) {

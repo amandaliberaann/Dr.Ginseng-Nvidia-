@@ -5,6 +5,8 @@ import { ElementsConfig } from '@clerk/types';
 import { createStyles } from 'antd-style';
 import { memo } from 'react';
 
+//import HealthForm from '../../health/features/HealthForm';
+
 export const useStyles = createStyles(
   ({ css, token, cx }, mobile: boolean) =>
     ({
@@ -59,7 +61,13 @@ export const useStyles = createStyles(
       [k in keyof ElementsConfig]: any;
     }>,
 );
-
+// const DotIcon = () => {
+//   return (
+//     <svg fill="currentColor" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+//       <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
+//     </svg>
+//   );
+// };
 const Client = memo<{ mobile?: boolean }>(({ mobile }) => {
   const { styles } = useStyles(mobile);
 
@@ -68,7 +76,14 @@ const Client = memo<{ mobile?: boolean }>(({ mobile }) => {
       appearance={{
         elements: styles,
       }}
+      path="/user-profile"
     />
+    // <UserButton>
+    //   {/* You can pass the content as a component */}
+    //   <UserButton.UserProfilePage label="Custom Page" labelIcon={<DotIcon />} url="custom">
+    //     <HealthForm />
+    //   </UserButton.UserProfilePage>
+    // </UserButton>
   );
 });
 

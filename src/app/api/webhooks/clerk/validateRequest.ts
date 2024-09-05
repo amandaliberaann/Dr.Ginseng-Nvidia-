@@ -14,6 +14,7 @@ export const validateRequest = async (request: Request, secret: string) => {
   const wh = new Webhook(secret);
 
   try {
+    console.log('Successfull verify');
     return wh.verify(payloadString, svixHeaders) as WebhookEvent;
   } catch {
     console.error('incoming webhook failed verification');

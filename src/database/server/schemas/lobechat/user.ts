@@ -1,6 +1,14 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix  */
 import { LobeChatPluginManifest } from '@lobehub/chat-plugin-sdk';
-import { boolean, integer, jsonb, pgTable, primaryKey, text } from 'drizzle-orm/pg-core';
+import {
+  boolean,
+  doublePrecision,
+  integer,
+  jsonb,
+  pgTable,
+  primaryKey,
+  text,
+} from 'drizzle-orm/pg-core';
 
 import { DEFAULT_PREFERENCE } from '@/const/user';
 import { CustomPluginParams } from '@/types/tool/plugin';
@@ -29,6 +37,13 @@ export const users = pgTable('users', {
 
   createdAt: createdAt(),
   updatedAt: updatedAt(),
+  // New fields
+  age: integer('age'),
+  type: integer('type'),
+  gender: text('gender'),
+  goal: text('goal'),
+  height: doublePrecision('height'),
+  weight: doublePrecision('weight'),
 });
 
 export type NewUser = typeof users.$inferInsert;

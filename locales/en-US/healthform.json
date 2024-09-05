@@ -1,0 +1,12 @@
+{
+  "title": {
+    "age": "Age",
+    "fill": "To provide you with better health advice, please fill out the information below",
+    "gender": "Gender",
+    "goal": "Recent health goal",
+    "height": "Height",
+     "message": "Your information has been recorded",
+     "thanks": "Thank you for your submission",
+    "weight": "Weight"
+  }
+}

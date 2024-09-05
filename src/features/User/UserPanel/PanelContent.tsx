@@ -17,13 +17,15 @@ import { useMenu } from './useMenu';
 const PanelContent = memo<{ closePopover: () => void }>(({ closePopover }) => {
   const router = useRouter();
   const isLoginWithAuth = useUserStore(authSelectors.isLoginWithAuth);
-  const [openSignIn, signOut, openUserProfile, enableAuth, enabledNextAuth] = useUserStore((s) => [
-    s.openLogin,
-    s.logout,
-    s.openUserProfile,
-    s.enableAuth(),
-    s.enabledNextAuth,
-  ]);
+  const [openSignIn, openSignup, signOut, openUserProfile, enableAuth, enabledNextAuth] =
+    useUserStore((s) => [
+      s.openLogin,
+      s.openSignup,
+      s.logout,
+      s.openUserProfile,
+      s.enableAuth(),
+      s.enabledNextAuth,
+    ]);
   const { mainItems, logoutItems } = useMenu();
 
   const handleOpenProfile = () => {
@@ -32,10 +34,18 @@ const PanelContent = memo<{ closePopover: () => void }>(({ closePopover }) => {
     closePopover();
   };
 
-  const handleSignIn = () => {
-    openSignIn();
+  // const handleSignIn = () => {
+  //   openSignIn();
+  //   closePopover();
+  // };
+  const handleSignUp = () => {
+    openSignup();
     closePopover();
   };
+  // const handleSignUp = () => {
+  //   router.push('/signup');
+  //   closePopover();
+  // };
 
   const handleSignOut = () => {
     signOut();
@@ -58,7 +68,8 @@ const PanelContent = memo<{ closePopover: () => void }>(({ closePopover }) => {
           <DataStatistics />
         </>
       ) : (
-        <UserLoginOrSignup onClick={handleSignIn} />
+        //<UserLoginOrSignup onClick={handleSignIn} />
+        <UserLoginOrSignup onClick={handleSignUp} />
       )}
 
       <Menu items={mainItems} onClick={closePopover} />

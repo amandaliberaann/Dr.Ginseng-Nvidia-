@@ -22,5 +22,9 @@
   "welcome": {
     "description": "Dr.Ginseng 提供全面的生物数据监测分析、养生知识库和智能AI助手，为您带来最佳的养生体验。",
     "title": "Dr.Ginseng：您的智能养生专家"
+  },
+  "healthform": {
+    "description": "个人数据收集，包括步数、心率、睡眠和营养等。",
+    "title": "个人健康数据收集"
   }
 }

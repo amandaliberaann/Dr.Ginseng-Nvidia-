@@ -7,6 +7,7 @@ import components from './components';
 import dashboard from './dashboard';
 import error from './error';
 import file from './file';
+import healthform from './healthform';
 import knowledgeBase from './knowledgeBase';
 import market from './market';
 import metadata from './metadata';
@@ -27,6 +28,7 @@ const resources = {
   dashboard,
   error,
   file,
+  healthform,
   knowledgeBase,
   market,
   metadata,

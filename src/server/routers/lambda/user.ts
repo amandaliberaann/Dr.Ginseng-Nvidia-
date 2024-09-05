@@ -12,14 +12,14 @@ import { UserGuideSchema, UserInitializationState, UserPreference } from '@/type
 
 const userProcedure = authedProcedure.use(async (opts) => {
   return opts.next({
-    ctx: { userModel: new UserModel() },
+    ctx: { ...opts.ctx, userModel: new UserModel() },
   });
 });
 
 export const userRouter = router({
   getUserState: userProcedure.query(async ({ ctx }): Promise<UserInitializationState> => {
     let state: Awaited<ReturnType<UserModel['getUserState']>> | undefined;
-
+    console.log('User ID in ctx:', ctx.userId);
     // get or create first-time user
     while (!state) {
       try {
