@@ -3,7 +3,6 @@ import { createStyles } from 'antd-style';
 import dynamic from 'next/dynamic';
 import { memo } from 'react';
 
-
 // Define a mapping object that links chart types to their corresponding dynamically imported components
 const chartComponentsMap = {
   EChart: dynamic(() => import('@/app/(main)/chart/EChart'), { ssr: false }),
@@ -36,15 +35,17 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
 
 interface ChartCardProps {
   chartType: keyof typeof chartComponentsMap; // chartType must be a key of chartComponentsMap
+  data?: any; // You can specify a more precise type based on your data structure
+  title?: string;
 }
 
-const ChartCard = memo<ChartCardProps>(({ chartType }) => {
+const ChartCard = memo<ChartCardProps>(({ chartType, data, title }) => {
   const { styles } = useStyles();
   const ChartComponent = chartComponentsMap[chartType]; // Dynamically select the chart component based on chartType
 
   return (
     <Card className={styles.inner}>
-      <ChartComponent />
+      <ChartComponent data={data} title={title} />
     </Card>
   );
 });
