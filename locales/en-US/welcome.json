@@ -2,30 +2,31 @@
   "button": {
     "import": "Import Configuration",
     "market": "Visit Market",
-    "start": "Start Now"
+    "start": "Start Chat",
+    "query": "View Query"
   },
   "guide": {
     "agents": {
       "replaceBtn": "Replace Batch",
       "title": "New Assistant Recommendations:"
     },
-    "defaultMessage": "I am your personal intelligent assistant LobeChat, how can I help you now?\nIf you need a more professional or customized assistant, you can click on `+` to create a custom assistant",
-    "defaultMessageWithoutCreate": "I am your personal AI assistant, LobeChat. How can I assist you now?",
+    "defaultMessage": "I am your personal intelligent assistant Dr.Ginseng, how can I help you now?\nIf you need a more professional or customized assistant, you can click on `+` to create a custom assistant",
+    "defaultMessageWithoutCreate": "I am your personal AI assistant, Dr.Ginseng. How can I assist you now?",
     "qa": {
       "q01": "What is LobeHub?",
-      "q02": "What is LobeChat?",
-      "q03": "Does LobeChat have community support?",
-      "q04": "What functions does LobeChat support?",
-      "q05": "How to deploy and use LobeChat?",
-      "q06": "What is the pricing of LobeChat?",
-      "q07": "Is LobeChat free?",
+      "q02": "What is Dr.Ginseng?",
+      "q03": "Does Dr.Ginseng have community support?",
+      "q04": "What functions does Dr.Ginseng support?",
+      "q05": "How to deploy and use Dr.Ginseng?",
+      "q06": "What is the pricing of Dr.Ginseng?",
+      "q07": "Is Dr.Ginseng free?",
       "q08": "Is there a cloud service version?",
-      "q09": "Does LobeChat support local language models?",
-      "q10": "Does LobeChat support image recognition and generation?",
-      "q11": "Does LobeChat support speech synthesis and speech recognition?",
-      "q12": "Does LobeChat support a plugin system?",
+      "q09": "Does Dr.Ginseng support local language models?",
+      "q10": "Does Dr.Ginseng support image recognition and generation?",
+      "q11": "Does Dr.Ginseng support speech synthesis and speech recognition?",
+      "q12": "Does Dr.Ginseng support a plugin system?",
       "q13": "Is there a marketplace to obtain GPTs?",
-      "q14": "Does LobeChat support multiple AI service providers?",
+      "q14": "Does Dr.Ginseng support multiple AI service providers?",
       "q15": "What should I do if I encounter problems while using it?"
     },
     "questions": {
@@ -43,8 +44,8 @@
   "pickAgent": "Or choose from the following assistant templates",
   "skip": "Skip Creation",
   "slogan": {
-    "desc1": "Pioneering the new age of thinking and creating. Built for you, the Super Individual.",
-    "desc2": "Create your first assistant and let's get started~",
-    "title": "Unlock the superpower of your brain"
+    "desc1": "Comprehensive biometric analysis, wellness knowledge, and AI assistant for your optimal wellness experience.",
+    "desc2": "Create your first wellness assistant and let's get started~",
+    "title": "Your Intelligent Wellness Expert"
   }
 }
