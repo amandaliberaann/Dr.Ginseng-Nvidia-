@@ -36,16 +36,18 @@ const useStyles = createStyles(({ css, token, isDarkMode }) => ({
 interface ChartCardProps {
   chartType: keyof typeof chartComponentsMap; // chartType must be a key of chartComponentsMap
   data?: any; // You can specify a more precise type based on your data structure
+  isDay?: boolean;
+  isWeek?: boolean;
   title?: string;
 }
 
-const ChartCard = memo<ChartCardProps>(({ chartType, data, title }) => {
+const ChartCard = memo<ChartCardProps>(({ chartType, data, title, isWeek, isDay }) => {
   const { styles } = useStyles();
   const ChartComponent = chartComponentsMap[chartType]; // Dynamically select the chart component based on chartType
 
   return (
     <Card className={styles.inner}>
-      <ChartComponent data={data} title={title} />
+      <ChartComponent data={data} isDay={isDay} isWeek={isWeek} title={title} />
     </Card>
   );
 });

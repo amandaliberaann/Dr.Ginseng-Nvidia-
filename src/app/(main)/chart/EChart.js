@@ -4,7 +4,7 @@ import ReactApexChart from 'react-apexcharts';
 import eChart from './configs/eChart';
 import './style.css';
 
-function EChart({ data, title }) {
+function EChart({ data, title, isWeek, isDay }) {
   const { Title, Paragraph } = Typography;
 
   return (

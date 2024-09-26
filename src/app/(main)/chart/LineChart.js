@@ -6,6 +6,9 @@ import ReactApexChart from 'react-apexcharts';
 import lineChart from './configs/lineChart';
 import './style.css';
 
+const dayCategories = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+const weekCategories = ['Week1', 'Week2', 'Week3', 'Week4'];
+
 const sortDataByMonth = (data) => {
   const monthOrder = [
     'Jan',
@@ -23,7 +26,15 @@ const sortDataByMonth = (data) => {
   ];
   return monthOrder.map((month) => data[month]);
 };
-function LineChart({ data, title }) {
+const sortDataByDay = (data) => {
+  const weekOrder = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+  return weekOrder.map((day) => data[day]);
+};
+const sortDataByWeek = (data) => {
+  const weekOrder = ['Week1', 'Week2', 'Week3', 'Week4'];
+  return weekOrder.map((day) => data[day]);
+};
+function LineChart({ data, title, isWeek, isDay }) {
   const { Title, Paragraph } = Typography;
   const [series, setSeries] = useState(lineChart.series);
   const [mobileData, setMobileData] = useState([]);
@@ -32,11 +43,64 @@ function LineChart({ data, title }) {
   useEffect(() => {
     if (data) {
       console.log('Data in Line Chart:', data);
-      setMobileData(sortDataByMonth(data)); // Assuming sortDataByMonth is correctly implemented
-      setWebSiteData(sortDataByMonth(data)); // Adjust accordingly if different data is needed
+
+      if (isDay) {
+        setMobileData(sortDataByDay(data)); // 按天排序数据
+        setWebSiteData(sortDataByDay(data)); // 按天排序数据
+      } else if (isWeek) {
+        setMobileData(sortDataByWeek(data)); // 按周排序数据
+        setWebSiteData(sortDataByWeek(data)); // 按周排序数据
+      } else {
+        setMobileData(sortDataByMonth(data)); // 按月排序数据
+        setWebSiteData(sortDataByMonth(data)); // 按月排序数据
+      }
     }
   }, [data]); // This will only run when `data` changes
-
+  const options = {
+    chart: {
+      height: 350,
+      toolbar: {
+        show: false,
+      },
+      type: 'area',
+      width: '100%',
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    legend: {
+      show: false,
+    },
+    stroke: {
+      curve: 'smooth',
+    },
+    tooltip: {
+      y: {
+        formatter: function (val) {
+          return val;
+        },
+      },
+    },
+    xaxis: {
+      categories: isWeek
+        ? weekCategories
+        : isDay
+          ? dayCategories
+          : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], // 默认使用月份
+      labels: {
+        colors: ['#8c8c8c'],
+        fontSize: '12px',
+        fontWeight: 300,
+      },
+    },
+    yaxis: {
+      labels: {
+        colors: ['#8c8c8c'],
+        fontSize: '12px',
+        fontWeight: 300,
+      },
+    },
+  };
   // Second useEffect to handle updating the series
   useEffect(() => {
     setSeries([
@@ -67,7 +131,8 @@ function LineChart({ data, title }) {
       <ReactApexChart
         className="full-width"
         height={300}
-        options={lineChart.options}
+        // options={lineChart.options}
+        options={options}
         series={series}
         type="area"
         width={'100%'}

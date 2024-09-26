@@ -21,6 +21,25 @@ interface MonthlyData {
   Oct: number;
   Sep: number;
 }
+interface DayData {
+  // 允许使用任何字符串作为键，值为 number 类型
+  [key: string]: number;
+  Fri: number;
+  Mon: number;
+  Sat: number;
+  Sun: number;
+  Thur: number;
+  Tue: number;
+  Wed: number;
+}
+interface WeekData {
+  // 允许使用任何字符串作为键，值为 number 类型
+  [key: string]: number;
+  Week1: number;
+  Week2: number;
+  Week3: number;
+  Week4: number;
+}
 
 // Define the structure for the comprehensive activity data
 interface ActivityData {
@@ -30,13 +49,36 @@ interface ActivityData {
   minutesAsleep: MonthlyData;
   minutesAwake: MonthlyData;
   moderatelyActiveMinutes: MonthlyData;
-
   sedentaryMinutes: MonthlyData;
   steps: MonthlyData;
   timeInBed: MonthlyData;
   veryActiveMinutes: MonthlyData;
 }
-function transformActivityData(originalData: Record<string, any>): ActivityData {
+interface ActivityDayData {
+  calories: DayData;
+  distance: DayData;
+  lightlyActiveMinutes: DayData;
+  minutesAsleep: DayData;
+  minutesAwake: DayData;
+  moderatelyActiveMinutes: DayData;
+  sedentaryMinutes: DayData;
+  steps: DayData;
+  timeInBed: DayData;
+  veryActiveMinutes: DayData;
+}
+interface ActivityWeekData {
+  calories: WeekData;
+  distance: WeekData;
+  lightlyActiveMinutes: WeekData;
+  minutesAsleep: WeekData;
+  minutesAwake: WeekData;
+  moderatelyActiveMinutes: WeekData;
+  sedentaryMinutes: WeekData;
+  steps: WeekData;
+  timeInBed: WeekData;
+  veryActiveMinutes: WeekData;
+}
+function transformActivityDataByMonth(originalData: Record<string, any>): ActivityData {
   const monthNames = [
     'Jan',
     'Feb',
@@ -107,63 +149,176 @@ function transformActivityData(originalData: Record<string, any>): ActivityData 
 
   return activityData;
 }
+function transformActivityDataByDay(originalData: Record<string, any>): ActivityDayData {
+  const dayNames = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+
+  const activityData: ActivityDayData = {
+    calories: {} as DayData,
+    distance: {} as DayData,
+    lightlyActiveMinutes: {} as DayData,
+    minutesAsleep: {} as DayData,
+    minutesAwake: {} as DayData,
+    moderatelyActiveMinutes: {} as DayData,
+    sedentaryMinutes: {} as DayData,
+    steps: {} as DayData,
+    timeInBed: {} as DayData,
+    veryActiveMinutes: {} as DayData,
+  };
+
+  dayNames.forEach((day) => {
+    const data = originalData[day] || { calories: 0, distance: 0, steps: 0 }; // Fallback to 0 if no data
+
+    // 检查数据类型并适当转换
+    activityData.calories[day] =
+      typeof data.calories === 'number'
+        ? parseFloat(data.calories.toFixed(2))
+        : parseFloat(data.calories) || 0;
+    activityData.distance[day] =
+      typeof data.distance === 'number'
+        ? parseFloat(data.distance.toFixed(2))
+        : parseFloat(data.distance) || 0;
+    activityData.steps[day] =
+      typeof data.steps === 'number' ? data.steps : parseInt(data.steps) || 0;
+    activityData.sedentaryMinutes[day] =
+      typeof data.sedentaryMinutes === 'number'
+        ? data.sedentaryMinutes
+        : parseInt(data.sedentaryMinutes) || 0;
+    activityData.lightlyActiveMinutes[day] =
+      typeof data.lightlyActiveMinutes === 'number'
+        ? data.lightlyActiveMinutes
+        : parseInt(data.lightlyActiveMinutes) || 0;
+    activityData.moderatelyActiveMinutes[day] =
+      typeof data.moderatelyActiveMinutes === 'number'
+        ? data.moderatelyActiveMinutes
+        : parseInt(data.moderatelyActiveMinutes) || 0;
+    activityData.veryActiveMinutes[day] =
+      typeof data.veryActiveMinutes === 'number'
+        ? data.veryActiveMinutes
+        : parseInt(data.veryActiveMinutes) || 0;
+    activityData.minutesAsleep[day] =
+      typeof data.minutesAsleep === 'number'
+        ? data.minutesAsleep
+        : parseInt(data.minutesAsleep) || 0;
+    activityData.minutesAwake[day] =
+      typeof data.minutesAwake === 'number' ? data.minutesAwake : parseInt(data.minutesAwake) || 0;
+    activityData.timeInBed[day] =
+      typeof data.timeInBed === 'number' ? data.timeInBed : parseInt(data.timeInBed) || 0;
+  });
+
+  return activityData;
+}
+
+function transformActivityDataByWeek(originalData: Record<string, any>): ActivityWeekData {
+  const weekNames = ['Week1', 'Week2', 'Week3', 'Week4'];
+
+  const activityData: ActivityWeekData = {
+    calories: {} as WeekData,
+    distance: {} as WeekData,
+    lightlyActiveMinutes: {} as WeekData,
+    minutesAsleep: {} as WeekData,
+    minutesAwake: {} as WeekData,
+    moderatelyActiveMinutes: {} as WeekData,
+    sedentaryMinutes: {} as WeekData,
+    steps: {} as WeekData,
+    timeInBed: {} as WeekData,
+    veryActiveMinutes: {} as WeekData,
+  };
+
+  weekNames.forEach((week) => {
+    const data = originalData[week] || { calories: 0, distance: 0, steps: 0 }; // Fallback to 0 if no data
+
+    // 检查数据类型并适当转换
+    activityData.calories[week] =
+      typeof data.calories === 'number'
+        ? parseFloat(data.calories.toFixed(2))
+        : parseFloat(data.calories) || 0;
+    activityData.distance[week] =
+      typeof data.distance === 'number'
+        ? parseFloat(data.distance.toFixed(2))
+        : parseFloat(data.distance) || 0;
+    activityData.steps[week] =
+      typeof data.steps === 'number' ? data.steps : parseInt(data.steps) || 0;
+    activityData.sedentaryMinutes[week] =
+      typeof data.sedentaryMinutes === 'number'
+        ? data.sedentaryMinutes
+        : parseInt(data.sedentaryMinutes) || 0;
+    activityData.lightlyActiveMinutes[week] =
+      typeof data.lightlyActiveMinutes === 'number'
+        ? data.lightlyActiveMinutes
+        : parseInt(data.lightlyActiveMinutes) || 0;
+    activityData.moderatelyActiveMinutes[week] =
+      typeof data.moderatelyActiveMinutes === 'number'
+        ? data.moderatelyActiveMinutes
+        : parseInt(data.moderatelyActiveMinutes) || 0;
+    activityData.veryActiveMinutes[week] =
+      typeof data.veryActiveMinutes === 'number'
+        ? data.veryActiveMinutes
+        : parseInt(data.veryActiveMinutes) || 0;
+    activityData.minutesAsleep[week] =
+      typeof data.minutesAsleep === 'number'
+        ? data.minutesAsleep
+        : parseInt(data.minutesAsleep) || 0;
+    activityData.minutesAwake[week] =
+      typeof data.minutesAwake === 'number' ? data.minutesAwake : parseInt(data.minutesAwake) || 0;
+    activityData.timeInBed[week] =
+      typeof data.timeInBed === 'number' ? data.timeInBed : parseInt(data.timeInBed) || 0;
+  });
+
+  return activityData;
+}
 // Define the GET method to fetch activity data
+// export async function GET(request: NextRequest) {
+//   console.log('UserId', request.nextUrl.searchParams.get('userId'));
+//   const userId = request.nextUrl.searchParams.get('userId');
+//   console.log('activity route.ts is called');
+//   // 函数转换原始数据到新格式
+
+//   try {
+//     const activityDbData = await ActivityService.queryDailiyActivity(userId || '');
+//     const formattedData = transformActivityDataByMonth(activityDbData);
+//     console.log('Activity Data in api/route:', formattedData);
+//     return NextResponse.json(formattedData);
+//   } catch (error) {
+//     console.error('Failed to fetch activity data:', error);
+//   }
+// }
 export async function GET(request: NextRequest) {
   console.log('UserId', request.nextUrl.searchParams.get('userId'));
   const userId = request.nextUrl.searchParams.get('userId');
+  const year = request.nextUrl.searchParams.get('year');
+  const month = request.nextUrl.searchParams.get('month');
+  const week = request.nextUrl.searchParams.get('week');
   console.log('activity route.ts is called');
-  // 函数转换原始数据到新格式
 
   try {
-    // const activityData: ActivityData = {
-    //   calories: {
-    //     Apr: 530,
-    //     Aug: 495,
-    //     Dec: 500,
-    //     Feb: 450,
-    //     Jan: 500,
-    //     Jul: 510,
-    //     Jun: 450,
-    //     Mar: 480,
-    //     May: 470,
-    //     Nov: 415,
-    //     Oct: 420,
-    //     Sep: 500,
-    //   },
-    //   distance: {
-    //     Apr: 8,
-    //     Aug: 7.4,
-    //     Dec: 7.2,
-    //     Feb: 6.9,
-    //     Jan: 7.5,
-    //     Jul: 7.8,
-    //     Jun: 7,
-    //     Mar: 7.2,
-    //     May: 6.5,
-    //     Nov: 5.9,
-    //     Oct: 6.1,
-    //     Sep: 7.6,
-    //   },
-    //   steps: {
-    //     Apr: 1400,
-    //     Aug: 1200,
-    //     Dec: 1200,
-    //     Feb: 1100,
-    //     Jan: 1200,
-    //     Jul: 1250,
-    //     Jun: 1100,
-    //     Mar: 1300,
-    //     May: 1150,
-    //     Nov: 9500,
-    //     Oct: 1000,
-    //     Sep: 1300,
-    //   },
-    // };
-    const activityDbData = await ActivityService.queryDailiyActivity(userId || '');
-    const formattedData = transformActivityData(activityDbData);
+    let activityDbData;
+    let formattedData;
+
+    // 优先判断 week
+    if (week) {
+      activityDbData = await ActivityService.queryDailiyActivityByWeek(userId || '', week);
+      formattedData = transformActivityDataByDay(activityDbData);
+    }
+    // 如果 week 为空，判断 month
+    else if (month) {
+      activityDbData = await ActivityService.queryDailiyActivityByMonth(userId || '', month);
+      formattedData = transformActivityDataByWeek(activityDbData);
+    }
+    // 如果 month 为空，判断 year
+    else if (year) {
+      activityDbData = await ActivityService.queryDailiyActivityByYear(userId || '', year);
+      formattedData = transformActivityDataByMonth(activityDbData);
+    }
+    // 如果都为空，调用默认的 queryDailiyActivity
+    else {
+      activityDbData = await ActivityService.queryDailiyActivity(userId || '');
+      formattedData = transformActivityDataByMonth(activityDbData);
+    }
+
     console.log('Activity Data in api/route:', formattedData);
     return NextResponse.json(formattedData);
   } catch (error) {
     console.error('Failed to fetch activity data:', error);
+    return NextResponse.json({ error: 'Failed to fetch activity data' }, { status: 500 });
   }
 }
