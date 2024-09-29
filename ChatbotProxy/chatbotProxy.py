@@ -30,7 +30,7 @@ def pretty_print(messages):
         print(f"{m['role']}: {m['content']}")  # Adjusted for compatibility with serialized format
 
 # Initialize OpenAI client with your API key
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "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"))
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", ""))
 
 # Retrieve assistant and create a new thread globally (if needed per request, this should be moved into the function)
 assistant = client.beta.assistants.retrieve(assistant_id="asst_Swu2bnyqeDIFMJ1GUrB4qi1o")

@@ -3,7 +3,7 @@ import os
 import json
 
 # Initialize the OpenAI client with your API key
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "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"))
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", ""))
 
 # Create a chat completion
 completion = client.chat.completions.create(
