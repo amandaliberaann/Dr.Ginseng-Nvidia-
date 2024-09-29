@@ -242,80 +242,65 @@ class ChatService {
 
   getChatCompletion = async (params: Partial<ChatStreamPayload>, options?: FetchOptions) => {
     const { signal } = options ?? {};
-
     const { provider = ModelProvider.OpenAI, ...res } = params;
 
     let model = res.model || DEFAULT_AGENT_CONFIG.model;
 
     // if the provider is Azure, get the deployment name as the request model
     if (provider === ModelProvider.Azure) {
-      const chatModelCards = modelProviderSelectors.getModelCardsById(provider)(
-        useUserStore.getState(),
-      );
-
-      const deploymentName = chatModelCards.find((i) => i.id === model)?.deploymentName;
-      if (deploymentName) model = deploymentName;
+        const chatModelCards = modelProviderSelectors.getModelCardsById(provider)(useUserStore.getState());
+        const deploymentName = chatModelCards.find((i) => i.id === model)?.deploymentName;
+        if (deploymentName) model = deploymentName;
     }
 
     const payload = merge(
-      { model: DEFAULT_AGENT_CONFIG.model, stream: true, ...DEFAULT_AGENT_CONFIG.params },
-      { ...res, model },
+        { model: DEFAULT_AGENT_CONFIG.model, stream: true, ...DEFAULT_AGENT_CONFIG.params },
+        { ...res, model }
     );
 
-    /**
-     * Use browser agent runtime
-     */
-    const enableFetchOnClient = modelConfigSelectors.isProviderFetchOnClient(provider)(
-      useUserStore.getState(),
-    );
+    const enableFetchOnClient = modelConfigSelectors.isProviderFetchOnClient(provider)(useUserStore.getState());
 
     let fetcher: typeof fetch | undefined = undefined;
 
     if (enableFetchOnClient) {
-      /**
-       * Notes:
-       * 1. Browser agent runtime will skip auth check if a key and endpoint provided by
-       *    user which will cause abuse of plugins services
-       * 2. This feature will be disabled by default
-       */
-      fetcher = async () => {
-        try {
-          return await this.fetchOnClient({ payload, provider, signal });
-        } catch (e) {
-          const {
-            errorType = ChatErrorType.BadRequest,
-            error: errorContent,
-            ...res
-          } = e as ChatCompletionErrorPayload;
-
-          const error = errorContent || e;
-          // track the error at server side
-          console.error(`Route: [${provider}] ${errorType}:`, error);
-
-          return createErrorResponse(errorType, { error, ...res, provider });
-        }
-      };
+        fetcher = async () => {
+            try {
+                return await this.fetchOnClient({ payload, provider, signal });
+            } catch (e) {
+                const { errorType = ChatErrorType.BadRequest, error: errorContent, ...res } = e as ChatCompletionErrorPayload;
+                const error = errorContent || e;
+                console.error(`Route: [${provider}] ${errorType}:`, error);
+                return createErrorResponse(errorType, { error, ...res, provider });
+            }
+        };
     }
 
     const traceHeader = createTraceHeader({ ...options?.trace });
 
     const headers = await createHeaderWithAuth({
-      headers: { 'Content-Type': 'application/json', ...traceHeader },
-      provider,
+        headers: { 'Content-Type': 'application/json', ...traceHeader },
+        provider,
     });
 
-    return fetchSSE(API_ENDPOINTS.chat(provider), {
-      body: JSON.stringify(payload),
-      fetcher: fetcher,
-      headers,
-      method: 'POST',
-      onAbort: options?.onAbort,
-      onErrorHandle: options?.onErrorHandle,
-      onFinish: options?.onFinish,
-      onMessageHandle: options?.onMessageHandle,
-      signal,
+    console.log("Sending payload to the API:", payload);
+
+    // Send the request to the API and log the raw response
+    const response = await fetchSSE(API_ENDPOINTS.chat(provider), {
+        body: JSON.stringify(payload),
+        fetcher: fetcher,
+        headers,
+        method: 'POST',
+        onAbort: options?.onAbort,
+        onErrorHandle: options?.onErrorHandle,
+        onFinish: options?.onFinish,
+        onMessageHandle: options?.onMessageHandle,
+        signal,
     });
-  };
+
+    console.log("Raw API response:", response);  // <-- Add this line
+
+    return response;
+};
 
   /**
    * run the plugin api to get result
@@ -404,7 +389,10 @@ class ChatService {
     // for the models with visual ability, add image url to content
     // refs: https://platform.openai.com/docs/guides/vision/quick-start
     const getContent = (m: ChatMessage) => {
-      if (!m.imageList) return m.content;
+      if (!m.imageList){
+        console.log(m);
+        return m.content;
+      } 
 
       const imageList = m.imageList;
 
@@ -426,7 +414,10 @@ class ChatService {
       ] as UserMessageContentPart[];
     };
 
+    
     let postMessages = messages.map((m): OpenAIChatMessage => {
+      console.log(m);
+
       switch (m.role) {
         case 'user': {
           return { content: getContent(m), role: m.role };

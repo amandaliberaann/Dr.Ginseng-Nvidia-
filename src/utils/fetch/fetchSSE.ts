@@ -223,7 +223,7 @@ export const fetchSSE = async (url: string, options: RequestInit & FetchSSEOptio
   let output = '';
   let toolCalls: undefined | MessageToolCall[];
   let triggerOnMessageHandler = false;
-
+  console.log("here");
   let finishedType: SSEFinishType = 'done';
   let response!: Response;
 
@@ -241,6 +241,22 @@ export const fetchSSE = async (url: string, options: RequestInit & FetchSSEOptio
       options.onMessageHandle?.({ isAnimationActives, tool_calls: toolCalls, type: 'tool_calls' });
     },
   });
+  console.log(1);
+
+  // if (typeof options.body === 'string') {
+  //   try {
+  //     // Parse the existing body
+  //     const bodyJson = JSON.parse(options.body);
+      
+  //     // Add the assistant_id
+  //     bodyJson.assistant_id = "asst_Swu2bnyqeDIFMJ1GUrB4qi1o"; // Replace with your actual assistant ID
+      
+  //     // Re-stringify the modified body
+  //     options.body = JSON.stringify(bodyJson);
+  //   } catch (error) {
+  //     console.error("Failed to parse or modify the request body:", error);
+  //   }
+  // }
 
   await fetchEventSource(url, {
     body: options.body,
@@ -276,6 +292,8 @@ export const fetchSSE = async (url: string, options: RequestInit & FetchSSEOptio
       let data;
       try {
         data = JSON.parse(ev.data);
+        console.log("check data");
+        console.log(data);
       } catch (e) {
         console.warn('parse error:', e);
         options.onErrorHandle?.({
@@ -348,6 +366,7 @@ export const fetchSSE = async (url: string, options: RequestInit & FetchSSEOptio
     signal: options.signal,
   });
 
+  console.log(2);
   // only call onFinish when response is available
   // so like abort, we don't need to call onFinish
   if (response) {
@@ -375,6 +394,7 @@ export const fetchSSE = async (url: string, options: RequestInit & FetchSSEOptio
       await options?.onFinish?.(output, { observationId, toolCalls, traceId, type: finishedType });
     }
   }
-
+  console.log("Response: ");
+  console.log(response);
   return response;
 };

@@ -40,7 +40,9 @@ export const POST = async (req: Request) => {
   if (openaiOrErrResponse instanceof Response) return openaiOrErrResponse;
 
   const res = await createOpenaiAudioTranscriptions({ openai: openaiOrErrResponse, payload });
-
+  
+  console.log("Result");
+  console.log(res);
   return new Response(JSON.stringify(res), {
     headers: {
       'content-type': 'application/json;charset=UTF-8',

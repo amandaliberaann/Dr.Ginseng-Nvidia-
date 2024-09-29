@@ -74,11 +74,20 @@ export function fetchEventSource(
     const fetch = inputFetch ?? window.fetch;
     async function create() {
       try {
+        console.log(input);
+        console.log(rest);
+        console.log(headers);
+        console.log(inputSignal);
+
+        
         const response = await fetch(input, {
           ...rest,
           headers,
           signal: inputSignal,
         });
+        
+        console.log("Check result");
+        console.log(response);
 
         await inputOnOpen(response);
 

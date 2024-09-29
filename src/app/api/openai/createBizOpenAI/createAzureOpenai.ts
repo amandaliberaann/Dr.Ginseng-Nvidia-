@@ -11,6 +11,7 @@ export const createAzureOpenai = (params: {
   model: string;
   userApiKey?: string | null;
 }) => {
+  console.log("Init with Azure");
   const { OPENAI_PROXY_URL = '', AZURE_API_VERSION, AZURE_API_KEY } = getLLMConfig();
 
   const endpoint = !params.endpoint ? OPENAI_PROXY_URL : params.endpoint;

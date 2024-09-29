@@ -5,6 +5,7 @@ import { ChatErrorType } from '@/types/fetch';
 
 // create OpenAI instance
 export const createOpenai = (userApiKey: string | null, endpoint?: string | null) => {
+  console.log("Init with openai");
   const { OPENAI_API_KEY, OPENAI_PROXY_URL } = getLLMConfig();
 
   const baseURL = endpoint ? endpoint : OPENAI_PROXY_URL ? OPENAI_PROXY_URL : undefined;
