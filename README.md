@@ -1,4 +1,4 @@
-<h1 align="center">Dr.Ginseng</h1>
+<h1 align="center">Dr.Ginseng: A Holistic AI Health Platform Integrating Wearable Tech and Traditional Medicine</h1>
 
 ## **Introduction**
 Dr.Ginseng combines biological data with wellness practices from TCM and Western medicine. This integrated approach offers personalized advice on diet, exercise, and stress management, aiming to prevent health issues before they occur and providing a cutting-edge solution in smart healthcare.
