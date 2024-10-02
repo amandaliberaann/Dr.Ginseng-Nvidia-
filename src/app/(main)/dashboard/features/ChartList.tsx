@@ -223,12 +223,12 @@ const ChartList = memo(() => {
       <h2 className={styles.title}>{t('title.sleep')}</h2>
 
       {/* Section for Sleep */}
-      <Flex gap="small">
-        <TimeSwitch onDateChange={handleDateChange} />
-        <Button onClick={handleSubmit} type="primary">
+      {/* <Flex gap="small"> */}
+      {/* <TimeSwitch onDateChange={handleDateChange} /> */}
+      {/* <Button onClick={handleSubmit} type="primary">
           Go
-        </Button>
-      </Flex>
+        </Button> */}
+      {/* </Flex> */}
       <Grid rows={2}>
         <ChartCard
           chartType="LineChart"
@@ -255,7 +255,7 @@ const ChartList = memo(() => {
 
       <h2 className={styles.title}>{t('title.bodyMeasurements')}</h2>
       {/* Section for Body Measurements */}
-      <TimeSwitch onDateChange={handleDateChange} />
+      {/* <TimeSwitch onDateChange={handleDateChange} /> */}
       <Grid rows={2}>
         <ChartCard chartType="LineChart" />
         <ChartCard chartType="LineChart" />
@@ -263,12 +263,12 @@ const ChartList = memo(() => {
       </Grid>
 
       <h2 className={styles.title}>{t('title.cycleTracking')}</h2>
-      <Flex gap="small">
-        <TimeSwitch onDateChange={handleDateChange} />
-        <Button onClick={handleSubmit} type="primary">
+      {/* <Flex gap="small"> */}
+      {/* <TimeSwitch onDateChange={handleDateChange} /> */}
+      {/* <Button onClick={handleSubmit} type="primary">
           Go
-        </Button>
-      </Flex>
+        </Button> */}
+      {/* </Flex> */}
       {/* Section for Cycle Tracking */}
       <Grid rows={2}>
         <ChartCard chartType="LineChart" />
@@ -277,12 +277,12 @@ const ChartList = memo(() => {
       </Grid>
 
       <h2 className={styles.title}>{t('title.nutrition')}</h2>
-      <Flex gap="small">
-        <TimeSwitch onDateChange={handleDateChange} />
-        <Button onClick={handleSubmit} type="primary">
+      {/* <Flex gap="small"> */}
+      {/* <TimeSwitch onDateChange={handleDateChange} /> */}
+      {/* <Button onClick={handleSubmit} type="primary">
           Go
-        </Button>
-      </Flex>
+        </Button> */}
+      {/* </Flex> */}
       {/* Section for Nutrition */}
       <Grid rows={2}>
         <ChartCard chartType="LineChart" />
@@ -291,12 +291,12 @@ const ChartList = memo(() => {
       </Grid>
 
       <h2 className={styles.title}>{t('title.repiratory')}</h2>
-      <Flex gap="small">
-        <TimeSwitch onDateChange={handleDateChange} />
-        <Button onClick={handleSubmit} type="primary">
+      {/* <Flex gap="small"> */}
+      {/* <TimeSwitch onDateChange={handleDateChange} /> */}
+      {/* <Button onClick={handleSubmit} type="primary">
           Go
-        </Button>
-      </Flex>
+        </Button> */}
+      {/* </Flex> */}
       {/* Section for Activity */}
       <Grid rows={2}>
         <ChartCard chartType="LineChart" />
@@ -305,12 +305,12 @@ const ChartList = memo(() => {
       </Grid>
 
       <h2 className={styles.title}>{t('title.medications')}</h2>
-      <Flex gap="small">
-        <TimeSwitch onDateChange={handleDateChange} />
-        <Button onClick={handleSubmit} type="primary">
+      {/* <Flex gap="small"> */}
+      {/* <TimeSwitch onDateChange={handleDateChange} /> */}
+      {/* <Button onClick={handleSubmit} type="primary">
           Go
-        </Button>
-      </Flex>
+        </Button> */}
+      {/* </Flex> */}
       {/* Section for Activity */}
       <Grid rows={2}>
         <ChartCard chartType="LineChart" />
@@ -319,12 +319,12 @@ const ChartList = memo(() => {
       </Grid>
 
       <h2 className={styles.title}>{t('title.hearing')}</h2>
-      <Flex gap="small">
-        <TimeSwitch onDateChange={handleDateChange} />
-        <Button onClick={handleSubmit} type="primary">
+      {/* <Flex gap="small"> */}
+      {/* <TimeSwitch onDateChange={handleDateChange} /> */}
+      {/* <Button onClick={handleSubmit} type="primary">
           Go
-        </Button>
-      </Flex>
+        </Button> */}
+      {/* </Flex> */}
       {/* Section for Activity */}
       <Grid rows={2}>
         <ChartCard chartType="LineChart" />
@@ -333,12 +333,12 @@ const ChartList = memo(() => {
       </Grid>
 
       <h2 className={styles.title}>{t('title.symptoms')}</h2>
-      <Flex gap="small">
-        <TimeSwitch onDateChange={handleDateChange} />
-        <Button onClick={handleSubmit} type="primary">
+      {/* <Flex gap="small"> */}
+      {/* <TimeSwitch onDateChange={handleDateChange} /> */}
+      {/* <Button onClick={handleSubmit} type="primary">
           Go
-        </Button>
-      </Flex>
+        </Button> */}
+      {/* </Flex> */}
       {/* Section for Activity */}
       <Grid rows={2}>
         <ChartCard chartType="LineChart" />

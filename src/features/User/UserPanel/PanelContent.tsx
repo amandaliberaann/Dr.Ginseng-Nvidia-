@@ -34,10 +34,10 @@ const PanelContent = memo<{ closePopover: () => void }>(({ closePopover }) => {
     closePopover();
   };
 
-  // const handleSignIn = () => {
-  //   openSignIn();
-  //   closePopover();
-  // };
+  const handleSignIn = () => {
+    openSignIn();
+    closePopover();
+  };
   const handleSignUp = () => {
     openSignup();
     closePopover();
@@ -69,7 +69,7 @@ const PanelContent = memo<{ closePopover: () => void }>(({ closePopover }) => {
         </>
       ) : (
         //<UserLoginOrSignup onClick={handleSignIn} />
-        <UserLoginOrSignup onClick={handleSignUp} />
+        <UserLoginOrSignup onClick={handleSignIn} />
       )}
 
       <Menu items={mainItems} onClick={closePopover} />

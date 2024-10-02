@@ -64,7 +64,7 @@ export const createAuthSlice: StateCreator<
   openSignup: async () => {
     if (enableClerk) {
       //get().clerkSignIn?.({ fallbackRedirectUrl: location.toString() });
-      get().clerkSignUp?.({ fallbackRedirectUrl: '/health' });
+      get().clerkSignUp?.({ forceRedirectUrl: '/health' });
 
       return;
     }

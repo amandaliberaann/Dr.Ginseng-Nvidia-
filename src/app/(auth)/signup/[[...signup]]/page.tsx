@@ -24,7 +24,7 @@ const Page = () => {
     redirect('/login');
   }
 
-  return <SignUp fallbackRedirectUrl="/health" />;
+  return <SignUp forceRedirectUrl="/health" />;
   // return (
   //   <SignUp.Root>
   //     <SignUp.Step name="start">
