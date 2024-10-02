@@ -14,7 +14,54 @@ Dr.Ginseng combines biological data with wellness practices from TCM and Western
 1. **Bio-Data Analysis:** Performed data cleaning, analysis, visualization, and model training using SAS Viya, leveraging advanced machine learning techniques like RNN/LSTM for data prediction and extrapolation.
 2. **LLM Medical Model with RAG:** Used Nvidia AI Workbench to fine-tune LLMs for predicting health conditions based on wearable data, with RAG providing personalized suggestions through real-time contextual information.
 3. **Full Stack Development**: Developed three main pages: Health Dashboard, TCM Knowledge Base, and LLM Medical Chatbot, with a TypeScript frontend, Python backend, and PostgreSQL database.
+## How to Run
 
+1. **Frontend**
+
+- Install dependencies
+
+```bash
+npm install
+```
+
+- Start the frontend server
+
+```bash
+npm run start
+```
+
+2. **Backend**
+
+- Navigate to the Chatbot directory
+
+```bash
+cd ChatbotProxy
+```
+
+- Create a virtual environment
+
+```bash
+python3 -m venv .venv
+```
+
+- Activate the virtual environment
+
+```bash
+.venv\Scripts\activate  # Windows
+source .venv/bin/activate  # macOS/Linux
+```
+
+- Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+- Run the Flask application
+
+```bash
+flask --app chatbotProxy run
+```
 ## Links
 - ([Devpost](https://devpost.com/software/dr-ginseng))
 - ([Demo Video](https://youtu.be/746qCydB6bE?si=1mB0IycqOZWpZIae))
