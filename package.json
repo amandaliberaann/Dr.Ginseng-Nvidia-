@@ -27,8 +27,8 @@
   "sideEffects": false,
   "scripts": {
     "build": "tsc --noEmitOnError false && next build",
-    "postbuild": "npm run build-sitemap && npm run build-migrate-db",
-    "build-migrate-db": "bun run db:migrate",
+
+  
     "build-sitemap": "next-sitemap --config next-sitemap.config.mjs",
     "build:analyze": "ANALYZE=true next build",
     "build:docker": "DOCKER=true next build && npm run build-sitemap",
