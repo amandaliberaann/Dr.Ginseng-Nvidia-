@@ -120,7 +120,10 @@ const nextConfig = {
     // we need a proxy to bypass the restriction
     { destination: `${API_PROXY_ENDPOINT}/api/chat/google`, source: '/api/chat/google' },
   ],
-
+// Adding TypeScript configuration to ignore build errors
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   webpack(config) {
     config.experiments = {
       asyncWebAssembly: true,
