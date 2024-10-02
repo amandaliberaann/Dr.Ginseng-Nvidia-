@@ -26,7 +26,7 @@
   "author": "LobeHub <i@lobehub.com>",
   "sideEffects": false,
   "scripts": {
-    "build": "next build",
+    "build": "tsc --noEmitOnError false && next build",
     "postbuild": "npm run build-sitemap && npm run build-migrate-db",
     "build-migrate-db": "bun run db:migrate",
     "build-sitemap": "next-sitemap --config next-sitemap.config.mjs",
