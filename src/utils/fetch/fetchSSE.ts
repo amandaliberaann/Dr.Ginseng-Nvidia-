@@ -11,6 +11,29 @@ import {
 import { fetchEventSource } from './fetchEventSource';
 import { getMessageError } from './parseError';
 import { parseToolCalls } from './parseToolCalls';
+import { OpenAI } from 'openai';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY, // Consider storing keys in environment variables for security
+  dangerouslyAllowBrowser: true
+});
+
+let assistantId = '';
+let threadId = '';
+
+// Function to initialize the assistant and thread
+async function initializeAssistant() {
+  console.log(process.env.OPENAI_API_KEY);
+  const assistant = await client.beta.assistants.retrieve('asst_Swu2bnyqeDIFMJ1GUrB4qi1o');
+  const thread = await client.beta.threads.create();
+  assistantId = assistant.id;
+  threadId = thread.id;
+};
+
+
 
 type SSEFinishType = 'done' | 'error' | 'abort';
 
@@ -223,7 +246,11 @@ export const fetchSSE = async (url: string, options: RequestInit & FetchSSEOptio
   let output = '';
   let toolCalls: undefined | MessageToolCall[];
   let triggerOnMessageHandler = false;
-  console.log("here");
+  console.log("url: ");
+  console.log(url);
+  console.log("Option: ");
+  console.log(options);
+
   let finishedType: SSEFinishType = 'done';
   let response!: Response;
 
@@ -257,114 +284,179 @@ export const fetchSSE = async (url: string, options: RequestInit & FetchSSEOptio
   //     console.error("Failed to parse or modify the request body:", error);
   //   }
   // }
-
-  await fetchEventSource(url, {
-    body: options.body,
-    fetch: options?.fetcher,
-    headers: options.headers as Record<string, string>,
-    method: options.method,
-    onerror: (error) => {
-      if (error === MESSAGE_CANCEL_FLAT || (error as TypeError).name === 'AbortError') {
-        finishedType = 'abort';
-        options?.onAbort?.(output);
-        textController.stopAnimation();
-      } else {
-        finishedType = 'error';
-
-        options.onErrorHandle?.(
-          error.type
-            ? error
-            : {
-                body: {
-                  message: error.message,
-                  name: error.name,
-                  stack: error.stack,
-                },
-                message: error.message,
-                type: ChatErrorType.UnknownChatFetchError,
-              },
-        );
-        return;
+  console.log(options);
+  async function handleEventSource(content, options) {
+    try {
+      await initializeAssistant();
+      // Ensure assistant and thread are initialized
+      if (!assistantId || !threadId) {
+        throw new Error('Assistant or thread is not initialized. Call initializeAssistant() first.');
       }
-    },
-    onmessage: (ev) => {
-      triggerOnMessageHandler = true;
-      let data;
-      try {
-        data = JSON.parse(ev.data);
-        console.log("check data");
-        console.log(data);
-      } catch (e) {
-        console.warn('parse error:', e);
-        options.onErrorHandle?.({
-          body: {
-            context: {
-              chunk: ev.data,
-              error: { message: (e as Error).message, name: (e as Error).name },
-            },
-            message:
-              'chat response streaming chunk parse error, please contact your API Provider to fix it.',
-          },
-          message: 'parse error',
-          type: 'StreamChunkError',
-        });
+      console.log(content);
+      console.log(assistantId);
+      console.log(threadId);
+      // Create a message in the thread
+      const message = await client.beta.threads.messages.create(threadId, {
+        role: 'user',
+        content: content || 'Explain to me how to be a good software engineer?',
+      });
+  
+      // We use the stream SDK helper to create a run with streaming.
+      let run = client.beta.threads.runs.stream(threadId, {
+        assistant_id: assistantId
+      })
+      .on('textCreated', (text: any) => console.log('\nassistant > '))
+      .on('textDelta', (textDelta: any, snapshot: any) => {
 
-        return;
-      }
+        if (smoothing) {
+          textController.pushToQueue(textDelta.value);
 
-      switch (ev.event) {
-        case 'error': {
-          finishedType = 'error';
-          options.onErrorHandle?.(data);
-          break;
-        }
-
-        case 'text': {
-          if (smoothing) {
-            textController.pushToQueue(data);
-
-            if (!textController.isAnimationActive) textController.startAnimation();
-          } else {
-            output += data;
-            options.onMessageHandle?.({ text: data, type: 'text' });
+          if (!textController.isAnimationActive) textController.startAnimation();
+        } else {
+          output += textDelta.value;
+          options.onMessageHandle?.({ text: textDelta.value, type: 'text' });
+        }})
+      .on('toolCallCreated', (toolCall: any) => console.log(`\nassistant > ${toolCall.type}\n\n`))
+      .on('toolCallDelta', (toolCallDelta: any, snapshot: any) => {
+        if (toolCallDelta.type === 'code_interpreter') {
+          if (toolCallDelta.code_interpreter.input) {
+            process.stdout.write(toolCallDelta.code_interpreter.input);
           }
-
-          break;
-        }
-
-        case 'tool_calls': {
-          // get finial
-          // if there is no tool calls, we should initialize the tool calls
-          if (!toolCalls) toolCalls = [];
-          toolCalls = parseToolCalls(toolCalls, data);
-
-          if (smoothing) {
-            // make the tool calls smooth
-
-            // push the tool calls to the smooth queue
-            toolCallsController.pushToQueue(data);
-            // if there is no animation active, we should start the animation
-            if (toolCallsController.isAnimationActives.some((value) => !value)) {
-              toolCallsController.startAnimations();
-            }
-          } else {
-            options.onMessageHandle?.({
-              tool_calls: toolCalls,
-              type: 'tool_calls',
+          if (toolCallDelta.code_interpreter.outputs) {
+            process.stdout.write("\noutput >\n");
+            toolCallDelta.code_interpreter.outputs.forEach((output: any) => {
+              if (output.type === "logs") {
+                process.stdout.write(`\n${output.logs}\n`);
+              }
             });
           }
         }
-      }
-    },
-    onopen: async (res) => {
-      response = res.clone();
-      // 如果不 ok 说明有请求错误
-      if (!response.ok) {
-        throw await getMessageError(res);
-      }
-    },
-    signal: options.signal,
-  });
+      });
+      
+
+      return output;
+    } catch (error) {
+      console.error(`Error: ${(error as Error).message}`);
+      return { error: (error as Error).message };
+    }
+  };
+
+  const parsedBody = JSON.parse(options.body);
+
+  // Step 2: Access the last message in the "messages" array
+  const lastMessage = parsedBody.messages[parsedBody.messages.length - 1];
+
+  // Step 3: Access the "content" of the last message
+  const lastContent = lastMessage.content;
+
+  response = await handleEventSource(lastContent, options);
+  // await fetchEventSource(url, {
+  //   body: options.body,
+  //   fetch: options?.fetcher,
+  //   headers: options.headers as Record<string, string>,
+  //   method: options.method,
+  //   onerror: (error) => {
+  //     if (error === MESSAGE_CANCEL_FLAT || (error as TypeError).name === 'AbortError') {
+  //       finishedType = 'abort';
+  //       options?.onAbort?.(output);
+  //       textController.stopAnimation();
+  //     } else {
+  //       finishedType = 'error';
+
+  //       options.onErrorHandle?.(
+  //         error.type
+  //           ? error
+  //           : {
+  //               body: {
+  //                 message: error.message,
+  //                 name: error.name,
+  //                 stack: error.stack,
+  //               },
+  //               message: error.message,
+  //               type: ChatErrorType.UnknownChatFetchError,
+  //             },
+  //       );
+  //       return;
+  //     }
+  //   },
+  //   onmessage: (ev) => {
+  //     triggerOnMessageHandler = true;
+  //     let data;
+  //     try {
+  //       data = JSON.parse(ev.data);
+  //       console.log("check data");
+  //       console.log(data);
+  //     } catch (e) {
+  //       console.warn('parse error:', e);
+  //       options.onErrorHandle?.({
+  //         body: {
+  //           context: {
+  //             chunk: ev.data,
+  //             error: { message: (e as Error).message, name: (e as Error).name },
+  //           },
+  //           message:
+  //             'chat response streaming chunk parse error, please contact your API Provider to fix it.',
+  //         },
+  //         message: 'parse error',
+  //         type: 'StreamChunkError',
+  //       });
+
+  //       return;
+  //     }
+
+  //     switch (ev.event) {
+  //       case 'error': {
+  //         finishedType = 'error';
+  //         options.onErrorHandle?.(data);
+  //         break;
+  //       }
+
+  //       case 'text': {
+  //         if (smoothing) {
+  //           textController.pushToQueue(data);
+
+  //           if (!textController.isAnimationActive) textController.startAnimation();
+  //         } else {
+  //           output += data;
+  //           options.onMessageHandle?.({ text: data, type: 'text' });
+  //         }
+
+  //         break;
+  //       }
+
+  //       case 'tool_calls': {
+  //         // get finial
+  //         // if there is no tool calls, we should initialize the tool calls
+  //         if (!toolCalls) toolCalls = [];
+  //         toolCalls = parseToolCalls(toolCalls, data);
+
+  //         if (smoothing) {
+  //           // make the tool calls smooth
+
+  //           // push the tool calls to the smooth queue
+  //           toolCallsController.pushToQueue(data);
+  //           // if there is no animation active, we should start the animation
+  //           if (toolCallsController.isAnimationActives.some((value) => !value)) {
+  //             toolCallsController.startAnimations();
+  //           }
+  //         } else {
+  //           options.onMessageHandle?.({
+  //             tool_calls: toolCalls,
+  //             type: 'tool_calls',
+  //           });
+  //         }
+  //       }
+  //     }
+  //   },
+  //   onopen: async (res) => {
+  //     response = res.clone();
+  //     // 如果不 ok 说明有请求错误
+  //     if (!response.ok) {
+  //       throw await getMessageError(res);
+  //     }
+  //   },
+  //   signal: options.signal,
+  // });
 
   console.log(2);
   // only call onFinish when response is available
