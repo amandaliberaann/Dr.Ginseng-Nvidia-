@@ -13,7 +13,7 @@ import {
 dotenv.config();
 
 const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY, // Consider storing keys in environment variables for security
+  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY, // Consider storing keys in environment variables for security
   dangerouslyAllowBrowser: true,
 });
 
