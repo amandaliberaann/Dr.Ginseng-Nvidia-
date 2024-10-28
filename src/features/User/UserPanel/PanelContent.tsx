@@ -20,7 +20,6 @@ const PanelContent = memo<{ closePopover: () => void }>(({ closePopover }) => {
   const [openSignIn,  signOut, openUserProfile, enableAuth, enabledNextAuth] =
     useUserStore((s) => [
       s.openLogin,
-      s.openSignup,
       s.logout,
       s.openUserProfile,
       s.enableAuth(),
